@@ -12,6 +12,7 @@ PORT(
 	FLAGS_IN: OUT STD_LOGIC_VECTOR (3 downto 0)
 );
 	
+	
 
 END ENTITY;
 
