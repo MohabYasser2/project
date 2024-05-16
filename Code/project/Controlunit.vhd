@@ -51,7 +51,7 @@ BEGIN
 
 	control<="1010000000000000";
 
-	END IF;
+	END IF; 
 	IF(opcode="01110") THEN --OR
 
 	control<="1010000000000000";
