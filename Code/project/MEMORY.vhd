@@ -15,6 +15,8 @@ BRANCH_SIG_IN : IN std_logic;
 BRANCH_Z_SIG_IN : IN std_logic;
 Protect_sig : IN std_logic;
 free_sig : IN std_logic;
+PC: IN STD_LOGIC;
+callSig: IN STD_LOGIC;
 
 
 
@@ -67,6 +69,8 @@ Signal MUXOUT : std_logic_vector(31 DOWNTO 0);
 Signal SP_TEMP : std_logic_vector(31 downto 0);
 Signal INC_DEC_OUTPUT : std_logic_vector(31 downto 0);
 signal OR_OUTPUT : std_logic;
+Signal Dout : std_logic_vector(31 DOWNTO 0);
+
 
 BEGIN
 OR_OUTPUT <= POP OR PUSH ;
@@ -75,7 +79,9 @@ BRANCH_Z_SIG <= BRANCH_Z_SIG_IN AND FLAGS(0);
 
 U0:Mux2x1 GENERIC MAP (32) PORT MAP(ALU_OUTPUT,SP_TEMP ,OR_OUTPUT,MUXOUT);
 
-U1:DATAMEMORY PORT MAP(CLK,RST,MEM_WRITE,Protect_SIG,Free_Sig,MUXOUT,Write_data,MEM_OUTPUT);
+U4:Mux2x1 GENERIC MAP (32) PORT MAP(Write_data,PC ,callSig,Dout);
+
+U1:DATAMEMORY PORT MAP(CLK,RST,MEM_WRITE,Protect_SIG,Free_Sig,MUXOUT,Dout,MEM_OUTPUT);
 
 U2:SP Port MAP(CLK,RST,INC_DEC_OUTPUT,SP_TEMP);
 

@@ -128,7 +128,7 @@ IF(opcode="11001") THEN --JMP
     control<="0000000000000000";
 END IF;
 IF(opcode="11010") THEN --CALL
-    control<="0000000000000000";
+    control<="0000000000000010";
 END IF;
 IF(opcode="11011") THEN --RET
     control<="0000000000000000";
@@ -156,5 +156,6 @@ Insig<=control(5);
 Outsig<=control(4);
 Protect<=control(3);
 Free<=control(2);
+call<=control(1);
 
 END ARCHITECTURE;
