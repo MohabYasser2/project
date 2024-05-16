@@ -1,0 +1,984 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Asus/Desktop/UNI/Software/modelsim
+Ealu
+Z0 w1713831677
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 dC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project
+Z5 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ALU.vhd
+Z6 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ALU.vhd
+l0
+L6
+VWb9h:J[3gEmO>@_=]j6SM0
+!s100 =Ga?0D56Ncg?HXJU6L1T30
+Z7 OV;C;10.5b;63
+32
+Z8 !s110 1713833237
+!i10b 1
+Z9 !s108 1713833237.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ALU.vhd|
+Z11 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ALU.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Aarchd_1
+R1
+R2
+R3
+DEx4 work 3 alu 0 22 Wb9h:J[3gEmO>@_=]j6SM0
+l32
+L19
+Vb2m8DPTY83`TLX?b1`z]M2
+!s100 dGFMVaUQD02A@lYjPjUSO3
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Eccr
+Z14 w1713829362
+R1
+R2
+R3
+R4
+Z15 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/CCR.vhd
+Z16 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/CCR.vhd
+l0
+L5
+VF[JeI<CKeD0:nB8k]KbOA3
+!s100 W?j9N4[k_YAoK<0hNH=k02
+R7
+32
+Z17 !s110 1713833238
+!i10b 1
+R9
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/CCR.vhd|
+Z19 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/CCR.vhd|
+!i113 1
+R12
+R13
+Accr_arch
+R1
+R2
+R3
+DEx4 work 3 ccr 0 22 F[JeI<CKeD0:nB8k]KbOA3
+l15
+L13
+VH_dcMJUP78H`dORe8b[:c2
+!s100 Z5UbNilC9l@73>BIR6b2`0
+R7
+32
+R17
+!i10b 1
+R9
+R18
+R19
+!i113 1
+R12
+R13
+Econtrolunit
+Z20 w1713832304
+R1
+R2
+R3
+R4
+Z21 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Controlunit.vhd
+Z22 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Controlunit.vhd
+l0
+L5
+VF_f[W7CG^S2dAXM=nE<M83
+!s100 LBRldKYEYc]fU8U9AAT=31
+R7
+32
+Z23 !s110 1713833239
+!i10b 1
+Z24 !s108 1713833239.000000
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Controlunit.vhd|
+Z26 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Controlunit.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 11 controlunit 0 22 F_f[W7CG^S2dAXM=nE<M83
+l32
+L30
+VBE_ed]P9m^89Z>ok<5QYz1
+!s100 >R4eIahibRY3i:6Z;XNLe1
+R7
+32
+R23
+!i10b 1
+R24
+R25
+R26
+!i113 1
+R12
+R13
+Ed_e
+Z27 w1713816993
+R1
+R2
+R3
+R4
+Z28 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_D_E.vhd
+Z29 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_D_E.vhd
+l0
+L6
+VM5QkCl@GggNZQg307R3P80
+!s100 hRA=0z]Wf_0j15]ZGd<eJ0
+R7
+32
+R23
+!i10b 1
+R24
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_D_E.vhd|
+Z31 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_D_E.vhd|
+!i113 1
+R12
+R13
+Afdregarch
+R1
+R2
+R3
+DEx4 work 3 d_e 0 22 M5QkCl@GggNZQg307R3P80
+l29
+L28
+V2b6cMH_d^6JXin[2Q@:;]1
+!s100 e>3G?=UU5]Qdaf3HlVdRj0
+R7
+32
+R23
+!i10b 1
+R24
+R30
+R31
+!i113 1
+R12
+R13
+Edatamemory
+Z32 w1713829015
+R1
+R2
+R3
+R4
+Z33 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DataMemory.vhd
+Z34 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DataMemory.vhd
+l0
+L5
+V@><Wm@=NSTN9oMLTUM3W@2
+!s100 5G7QjbezeP??i0Do@J:eT3
+R7
+32
+R17
+!i10b 1
+Z35 !s108 1713833238.000000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DataMemory.vhd|
+Z37 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DataMemory.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 10 datamemory 0 22 @><Wm@=NSTN9oMLTUM3W@2
+l21
+L16
+V5Cki91L>3=_DmmX8iN7SN2
+!s100 <l@BiOmT]E?<bEZIdoQ1G0
+R7
+32
+R17
+!i10b 1
+R35
+R36
+R37
+!i113 1
+R12
+R13
+Edecodeunit
+Z38 w1713832305
+R1
+R2
+R3
+R4
+Z39 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DecodeUnit.vhd
+Z40 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DecodeUnit.vhd
+l0
+L5
+V?Wk2V6:Q@Wl[Od_0G1kQU2
+!s100 97nnkBI5i;I4[m[a6Kb4d2
+R7
+32
+R23
+!i10b 1
+R24
+Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DecodeUnit.vhd|
+Z42 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/DecodeUnit.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 10 decodeunit 0 22 ?Wk2V6:Q@Wl[Od_0G1kQU2
+l70
+L30
+VhQOQ10D2jcjiE4C^FVWBo0
+!s100 T2cKgiSNdiQG7zeLmT6Ig1
+R7
+32
+R23
+!i10b 1
+R24
+R41
+R42
+!i113 1
+R12
+R13
+Ee_m
+Z43 w1713737167
+R1
+R2
+R3
+R4
+Z44 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ExMemPipeline.vhd
+Z45 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ExMemPipeline.vhd
+l0
+L6
+VU]]O;@NFh6oWEPUjQTcX23
+!s100 ^2_ZL?94E@lCXDRbE^m1V0
+R7
+32
+R23
+!i10b 1
+R24
+Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ExMemPipeline.vhd|
+Z47 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/ExMemPipeline.vhd|
+!i113 1
+R12
+R13
+Afdregarch
+R1
+R2
+R3
+DEx4 work 3 e_m 0 22 U]]O;@NFh6oWEPUjQTcX23
+l51
+L50
+VX@Q_C9^8DSPhein]imDgc3
+!s100 7SB2m4_]=e@kG=obfiYLM2
+R7
+32
+R23
+!i10b 1
+R24
+R46
+R47
+!i113 1
+R12
+R13
+Eexecute
+Z48 w1713626264
+R1
+R2
+R3
+R4
+Z49 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/EXECUTE.vhd
+Z50 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/EXECUTE.vhd
+l0
+L5
+VDfS?Z2TFjPbo=R6046EV=3
+!s100 93UoL8:^lEcF0l^zBMa7e1
+R7
+32
+R17
+!i10b 1
+R35
+Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/EXECUTE.vhd|
+Z52 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/EXECUTE.vhd|
+!i113 1
+R12
+R13
+Afetchunit
+R1
+R2
+R3
+DEx4 work 7 execute 0 22 DfS?Z2TFjPbo=R6046EV=3
+l53
+L20
+V1G^DWC<N;Z8N^<S4jQgn^1
+!s100 `X_Y@<RViSAflW<a7ND]N2
+R7
+32
+R17
+!i10b 1
+R35
+R51
+R52
+!i113 1
+R12
+R13
+Ef_d
+Z53 w1713638933
+R1
+R2
+R3
+R4
+Z54 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_FETCH.vhd
+Z55 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_FETCH.vhd
+l0
+L5
+V`6o]k_hLMJJ2bGR4l[]z_1
+!s100 o=oGMUc7DVNkB>@J565Y70
+R7
+32
+R23
+!i10b 1
+R24
+Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_FETCH.vhd|
+Z57 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_FETCH.vhd|
+!i113 1
+R12
+R13
+Afdregarch
+R1
+R2
+R3
+Z58 DEx4 work 3 f_d 0 22 `6o]k_hLMJJ2bGR4l[]z_1
+l26
+L25
+Z59 V]T5VdGTVJ2BgJ9hYOTG3`3
+Z60 !s100 [;T`KK0>z[k@A:jXhz28Q0
+R7
+32
+R23
+!i10b 1
+R24
+R56
+R57
+!i113 1
+R12
+R13
+Efdreg
+Z61 w1713542230
+R1
+R2
+R3
+Z62 dC:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project
+Z63 8C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_FETCH.vhd
+Z64 FC:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_FETCH.vhd
+l0
+L5
+Vl5AeA[obTEYj2bOLeI^Na2
+!s100 T6S@Vnc>Y;HKI1HGoD[Gf0
+R7
+32
+Z65 !s110 1713638239
+!i10b 1
+Z66 !s108 1713638239.000000
+Z67 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_FETCH.vhd|
+Z68 !s107 C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_FETCH.vhd|
+!i113 1
+R12
+R13
+Afdregarch
+R1
+R2
+R3
+DEx4 work 5 fdreg 0 22 l5AeA[obTEYj2bOLeI^Na2
+l16
+L15
+V`g5PQZHE]aobcNB=TgAaE0
+!s100 _on5L6D;X^JQddBJKJzC^1
+R7
+32
+R65
+!i10b 1
+R66
+R67
+R68
+!i113 1
+R12
+R13
+Efetch
+Z69 w1713828955
+R1
+R2
+R3
+R4
+Z70 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Fetch.vhd
+Z71 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Fetch.vhd
+l0
+L5
+VSoF7O;_Z[i7j5?;DnDVlN1
+!s100 lZKY8]z?2CGiHiTS65=aQ1
+R7
+32
+R17
+!i10b 1
+R35
+Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Fetch.vhd|
+Z73 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Fetch.vhd|
+!i113 1
+R12
+R13
+Afetchunit
+R1
+R2
+R3
+DEx4 work 5 fetch 0 22 SoF7O;_Z[i7j5?;DnDVlN1
+l57
+L23
+VEk2<47ndeHAA?8BOPniWh0
+!s100 ne>hS:gZjEg5=1NTT:hko0
+R7
+32
+R17
+!i10b 1
+R35
+R72
+R73
+!i113 1
+R12
+R13
+Einc_dec
+Z74 w1713626718
+R1
+R2
+R3
+R4
+Z75 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INC_DEC.vhd
+Z76 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INC_DEC.vhd
+l0
+L6
+VH?g71KW6QfCBKm3;iLRE70
+!s100 Jz00hJ^AF:bbnLlc8M4V_0
+R7
+32
+R17
+!i10b 1
+R35
+Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INC_DEC.vhd|
+Z78 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INC_DEC.vhd|
+!i113 1
+R12
+R13
+Asp_arch
+R1
+R2
+R3
+DEx4 work 7 inc_dec 0 22 H?g71KW6QfCBKm3;iLRE70
+l17
+L13
+V=]1c=]miZ6n?UfH5DIT7f0
+!s100 6i2IjV8l2g86?4emkGGk;2
+R7
+32
+R17
+!i10b 1
+R35
+R77
+R78
+!i113 1
+R12
+R13
+Einstruction_cache
+Z79 w1713820812
+R1
+R2
+R3
+R4
+Z80 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INSTRUCTION_CACHE.vhd
+Z81 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INSTRUCTION_CACHE.vhd
+l0
+L5
+V;_VSXhO=h:hckni==FUj]2
+!s100 UHQUGLa`ZjF:PeW?[SR[o1
+R7
+32
+R17
+!i10b 1
+R35
+Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INSTRUCTION_CACHE.vhd|
+Z83 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/INSTRUCTION_CACHE.vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 17 instruction_cache 0 22 ;_VSXhO=h:hckni==FUj]2
+l20
+L15
+VVS[:R?IlXc^O`VazQXDm82
+!s100 U4dUjA^SKC0zkzh_`O[XJ3
+R7
+32
+R17
+!i10b 1
+R35
+R82
+R83
+!i113 1
+R12
+R13
+Em_wb
+Z84 w1713737152
+R1
+R2
+R3
+R4
+Z85 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_M_WB.vhd
+Z86 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_M_WB.vhd
+l0
+L6
+Vl7a76Y23zQ4;TdYnYERB:2
+!s100 I3lNE6`XRk4FIHHk4h;U52
+R7
+32
+R23
+!i10b 1
+R24
+Z87 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_M_WB.vhd|
+Z88 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PIPELINE_M_WB.vhd|
+!i113 1
+R12
+R13
+Afdregarch
+R1
+R2
+R3
+DEx4 work 4 m_wb 0 22 l7a76Y23zQ4;TdYnYERB:2
+l25
+L24
+VHGB0BZCbRL]DhXEXYO8S_3
+!s100 K8m_o?aoD9VNW35nBNkB62
+R7
+32
+R23
+!i10b 1
+R24
+R87
+R88
+!i113 1
+R12
+R13
+Emain_processor
+Z89 w1713832982
+R1
+R2
+R3
+R4
+Z90 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MAIN_PROCESSOR.vhd
+Z91 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MAIN_PROCESSOR.vhd
+l0
+L6
+VT==3P0`o;Hm^k]OO;S1`A2
+!s100 Gad:M]3oGT>hW7=ibJC6L0
+R7
+32
+R23
+!i10b 1
+R24
+Z92 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MAIN_PROCESSOR.vhd|
+Z93 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MAIN_PROCESSOR.vhd|
+!i113 1
+R12
+R13
+Amain
+R1
+R2
+R3
+DEx4 work 14 main_processor 0 22 T==3P0`o;Hm^k]OO;S1`A2
+l239
+L19
+V<4fH<g>jlj:d9T>jjek1f0
+!s100 V?Zoc6ff1^I6N6F:Y@jCn2
+R7
+32
+R23
+!i10b 1
+R24
+R92
+R93
+!i113 1
+R12
+R13
+Ememory
+Z94 w1713734144
+R1
+R2
+R3
+R4
+Z95 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MEMORY.vhd
+Z96 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MEMORY.vhd
+l0
+L6
+VZ3kA1Wk0Eic[`Be4CLMg42
+!s100 eLG?Fm`1cY1IMdz4od3040
+R7
+32
+R17
+!i10b 1
+R35
+Z97 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MEMORY.vhd|
+Z98 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/MEMORY.vhd|
+!i113 1
+R12
+R13
+Afetchunit
+R1
+R2
+R3
+DEx4 work 6 memory 0 22 Z3kA1Wk0Eic[`Be4CLMg42
+l65
+L23
+ViSdKg2eZY72=GO_QH>U[h0
+!s100 hG1=PW<h785cKZXEMmQ6_1
+R7
+32
+R17
+!i10b 1
+R35
+R97
+R98
+!i113 1
+R12
+R13
+Emux2x1
+Z99 w1713552437
+R2
+R3
+R4
+Z100 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Mux2x1.vhd
+Z101 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Mux2x1.vhd
+l0
+L4
+VFd1Q9H8bJ=ZPoWYf;F_1i1
+!s100 42VT3K=Iz_BYQAIWf@_g53
+R7
+32
+R17
+!i10b 1
+R35
+Z102 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Mux2x1.vhd|
+Z103 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/Mux2x1.vhd|
+!i113 1
+R12
+R13
+Aarch1
+R2
+R3
+DEx4 work 6 mux2x1 0 22 Fd1Q9H8bJ=ZPoWYf;F_1i1
+l15
+L14
+VZ3e<lVh3PUP8:J@5o8hMm0
+!s100 em9`MoK8X>MbOc_nJMY_W2
+R7
+32
+R17
+!i10b 1
+R35
+R102
+R103
+!i113 1
+R12
+R13
+Emy_dff
+Z104 w1713022738
+R2
+R3
+R62
+Z105 8C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_DFF.vhd
+Z106 FC:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_DFF.vhd
+l0
+L4
+VCPdU>@IOnHzgmD1V@O?Gf0
+!s100 cYci7=FVR=nZ<X@KmAXg20
+R7
+32
+Z107 !s110 1713641030
+!i10b 1
+Z108 !s108 1713641030.000000
+Z109 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_DFF.vhd|
+Z110 !s107 C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_DFF.vhd|
+!i113 1
+R12
+R13
+Aa_my_dff
+R2
+R3
+DEx4 work 6 my_dff 0 22 CPdU>@IOnHzgmD1V@O?Gf0
+l10
+L9
+VRdF5QH0RillXAie7S2KUz0
+!s100 W>6IKlY<MDNW`Gz;UaU4H2
+R7
+32
+R107
+!i10b 1
+R108
+R109
+R110
+!i113 1
+R12
+R13
+Emy_dff_low
+Z111 w1713024329
+R2
+R3
+R4
+Z112 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_DFF_LOW.vhd
+Z113 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_DFF_LOW.vhd
+l0
+L4
+VQVcW6Li9Uh21M5[f_C7d@0
+!s100 ?TNOokOH33;JGfTTEh4@12
+R7
+32
+R17
+!i10b 1
+R35
+Z114 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_DFF_LOW.vhd|
+Z115 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_DFF_LOW.vhd|
+!i113 1
+R12
+R13
+Aa_my_dff
+R2
+R3
+DEx4 work 10 my_dff_low 0 22 QVcW6Li9Uh21M5[f_C7d@0
+l10
+L9
+VDk0<e?[CnB;EdWRH>;FM:1
+!s100 =hHXzX7oHK0dX=NNlU21k2
+R7
+32
+R17
+!i10b 1
+R35
+R114
+R115
+!i113 1
+R12
+R13
+Emy_ndff
+Z116 w1708857156
+R2
+R3
+R62
+Z117 8C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_nDFF.vhd
+Z118 FC:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_nDFF.vhd
+l0
+L4
+Vf8m?zi[]>eh7[Y4=@onlF0
+!s100 ]l@WACP90G4z1Joc2kjaD1
+R7
+32
+Z119 !s110 1713641031
+!i10b 1
+R108
+Z120 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_nDFF.vhd|
+Z121 !s107 C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_nDFF.vhd|
+!i113 1
+R12
+R13
+Ab_my_ndff
+R2
+R3
+DEx4 work 7 my_ndff 0 22 f8m?zi[]>eh7[Y4=@onlF0
+l16
+L11
+Vk4D1R4J^Qn?bjdVEFmhKE0
+!s100 c>c:f0li]O@WU[6;RDKIK3
+R7
+32
+R119
+!i10b 1
+R108
+R120
+R121
+!i113 1
+R12
+R13
+Emy_ndff_low
+Z122 w1713024350
+R2
+R3
+R4
+Z123 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_nDFF_LOW.vhd
+Z124 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_nDFF_LOW.vhd
+l0
+L5
+VfOWJ4VPDKUPzSndFl_IPn1
+!s100 Sh;<18X;ChFCdSDD2Gzi>3
+R7
+32
+R17
+!i10b 1
+R35
+Z125 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_nDFF_LOW.vhd|
+Z126 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/my_nDFF_LOW.vhd|
+!i113 1
+R12
+R13
+Ab_my_ndff_low
+R2
+R3
+DEx4 work 11 my_ndff_low 0 22 fOWJ4VPDKUPzSndFl_IPn1
+l17
+L12
+V:O`HF]V?4>0P]oYF<J9mU0
+!s100 ^:k[VQgK?N;9kMmHUYbb_3
+R7
+32
+R17
+!i10b 1
+R35
+R125
+R126
+!i113 1
+R12
+R13
+Epc
+Z127 w1713824736
+R1
+R2
+R3
+R4
+Z128 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PC.vhd
+Z129 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PC.vhd
+l0
+L5
+V_V@AR<6d;RNkPM5k`d0P;3
+!s100 FdnSUF=K1zUg8PMndG<@C1
+R7
+32
+R23
+!i10b 1
+R35
+Z130 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PC.vhd|
+Z131 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/PC.vhd|
+!i113 1
+R12
+R13
+Apc_arch
+R1
+R2
+R3
+DEx4 work 2 pc 0 22 _V@AR<6d;RNkPM5k`d0P;3
+l16
+L12
+Vm8`5dBza38GFg9g@nfXm>1
+!s100 DjjRzX]bW3@>9P=<VI_Ca1
+R7
+32
+R23
+!i10b 1
+R35
+R130
+R131
+!i113 1
+R12
+R13
+Eregisterfile32
+Z132 w1713728409
+R1
+R2
+R3
+R4
+Z133 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/RegisterFile32 (1).vhd
+Z134 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/RegisterFile32 (1).vhd
+l0
+L5
+V4eg4H=83H?F`TG7olX=Y60
+!s100 XzfB92WXXK`;TTZ2OIoLH2
+R7
+32
+R23
+!i10b 1
+R24
+Z135 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/RegisterFile32 (1).vhd|
+Z136 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/RegisterFile32 (1).vhd|
+!i113 1
+R12
+R13
+Aarch
+R1
+R2
+R3
+DEx4 work 14 registerfile32 0 22 4eg4H=83H?F`TG7olX=Y60
+l21
+L16
+VYCCDMIbBGdn;IhfTa90Q61
+!s100 h^N^U[VbIZfLMZ:>7QcYf2
+R7
+32
+R23
+!i10b 1
+R24
+R135
+R136
+!i113 1
+R12
+R13
+Esp
+Z137 w1713626295
+R1
+R2
+R3
+R4
+Z138 8C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/SP.vhd
+Z139 FC:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/SP.vhd
+l0
+L6
+VW4nZ[zjaWYP2i78IT[g=F3
+!s100 `PXMY4Fmzo:Of7Q3dd[=V1
+R7
+32
+R23
+!i10b 1
+R24
+Z140 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/SP.vhd|
+Z141 !s107 C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/project/SP.vhd|
+!i113 1
+R12
+R13
+Asp_arch
+R1
+R2
+R3
+DEx4 work 2 sp 0 22 W4nZ[zjaWYP2i78IT[g=F3
+l17
+L13
+VT9faY=[S[mIIhC8JMz7oO0
+!s100 NIGeB@hIFzc^i6DRnjNWV1
+R7
+32
+R23
+!i10b 1
+R24
+R140
+R141
+!i113 1
+R12
+R13

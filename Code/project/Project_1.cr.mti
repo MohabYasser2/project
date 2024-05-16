@@ -1,0 +1,167 @@
+{C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/DataMemory.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/DataMemory.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity DataMemory
+-- Compiling architecture ARCH of DataMemory
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/EXECUTE.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/EXECUTE.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity EXECUTE
+-- Compiling architecture FetchUnit of EXECUTE
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PC.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PC.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity PC
+-- Compiling architecture PC_ARCH of PC
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/my_nDFF_LOW.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/my_nDFF_LOW.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity my_nDFF_LOW
+-- Compiling architecture b_my_nDFF_LOW of my_nDFF_LOW
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/my_DFF_LOW.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/my_DFF_LOW.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity my_DFF_LOW
+-- Compiling architecture a_my_DFF of my_DFF_LOW
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_FETCH.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_FETCH.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity F_D
+-- Compiling architecture FDREGARCH of F_D
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/CCR.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/CCR.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity CCR
+-- Compiling architecture CCR_ARCH of CCR
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/MEMORY.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/MEMORY.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity MEMORY
+-- Compiling architecture FetchUnit of MEMORY
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/ALU.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/ALU.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity ALU
+-- Compiling architecture ArchD_1 of ALU
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/RegisterFile32.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/RegisterFile32.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity REGISTERFILE32
+-- Compiling architecture ARCH of REGISTERFILE32
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/SP.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/SP.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity SP
+-- Compiling architecture SP_ARCH of SP
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_nDFF.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_nDFF.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity my_nDFF
+-- Compiling architecture b_my_nDFF of my_nDFF
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_D_E.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_D_E.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity D_E
+-- Compiling architecture FDREGARCH of D_E
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/INSTRUCTION_CACHE.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/INSTRUCTION_CACHE.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity INSTRUCTION_CACHE
+-- Compiling architecture ARCH of INSTRUCTION_CACHE
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/INC_DEC.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/INC_DEC.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity INC_DEC
+-- Compiling architecture SP_ARCH of INC_DEC
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/Mux2x1.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/Mux2x1.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Mux2x1
+-- Compiling architecture ARCH1 of Mux2x1
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_DFF.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/week3/Lab 3 (11-1)/Lab 3/Lab 3/Demo/my_DFF.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity my_DFF
+-- Compiling architecture a_my_DFF of my_DFF
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_M_WB.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/PIPELINE_M_WB.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity M_WB
+-- Compiling architecture FDREGARCH of M_WB
+
+} {} {}} {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/Fetch.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Asus/Desktop/UNI/Courses/Year_3_2nd_Term/Computer Arch/project/Fetch.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Fetch
+-- Compiling architecture FetchUnit of Fetch
+
+} {} {}}

@@ -1,0 +1,86 @@
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+ENTITY D_E IS
+	PORT(	CLK, RST: IN STD_LOGIC;
+		MemToReg,RegWrite,MemWrite,Branch_Sig,Branch_Z_Sig,PUSH,POP,In_SIG,Protect,Free,ALU_SRC: IN STD_LOGIC;
+		PC,READ_DATA1,READ_DATA2,IMM_VALUE: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+		IN_PORT_IN: IN STD_LOGIC_VECTOR(31 DOWNTO 0);  
+		WRITE_ADDRESS:IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+		OP_CODE: IN STD_LOGIC_VECTOR(4 DOWNTO 0); 
+
+		MemToReg_OUT,RegWrite_OUT,MemWrite_OUT,Branch_Sig_OUT,Branch_Z_Sig_OUT,PUSH_OUT,POP_OUT,In_SIG_OUT,Protect_OUT,Free_OUT,ALU_SRC_OUT: OUT STD_LOGIC;
+		PC_OUT,READ_DATA1_OUT,READ_DATA2_OUT,IMM_VALUE_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
+		IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);  
+		WRITE_ADDRESS_OUT:OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+		OP_CODE_D_E: OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+
+
+
+
+
+);
+		
+END ENTITY;
+
+ARCHITECTURE FDREGARCH OF D_E IS
+BEGIN
+
+	PROCESS(CLK) IS
+	BEGIN
+		
+		IF RISING_EDGE(CLK) THEN
+
+			IF RST = '1' THEN
+
+			MemToReg_OUT <= '0';
+			RegWrite_OUT<= '0';
+			MemWrite_OUT<= '0';
+			Branch_Sig_OUT<= '0';
+			Branch_Z_Sig_OUT<= '0';
+			PUSH_OUT<= '0';
+			POP_OUT <= '0';
+			In_SIG_OUT<= '0';
+			Protect_OUT<= '0';
+			Free_OUT<= '0';
+			ALU_SRC_OUT<= '0';
+			
+			PC_OUT <=(OTHERS => '0');
+			READ_DATA1_OUT <=(OTHERS => '0');
+			READ_DATA2_OUT <=(OTHERS => '0');
+			IMM_VALUE_OUT <=(OTHERS => '0');
+			IN_PORT_OUT <=(OTHERS => '0');
+			WRITE_ADDRESS_OUT <=(OTHERS => '0');
+			OP_CODE_D_E <=(OTHERS => '0');
+			ELSE
+			
+			MemToReg_OUT <= MemToReg ;
+			RegWrite_OUT <= RegWrite;
+			MemWrite_OUT <= MemWrite;
+			Branch_Sig_OUT <= Branch_Sig;
+			Branch_Z_Sig_OUT <= Branch_Z_Sig;
+			PUSH_OUT <= PUSH;
+			POP_OUT <= POP;
+			In_SIG_OUT  <= In_SIG;
+			Protect_OUT <= Protect;
+			Free_OUT <= Free;
+			ALU_SRC_OUT <= ALU_SRC;
+			
+			PC_OUT <=PC;
+			READ_DATA1_OUT <=READ_DATA1;
+			READ_DATA2_OUT <=READ_DATA2;
+			IMM_VALUE_OUT <=IMM_VALUE;
+			IN_PORT_OUT <=IN_PORT_IN;
+			WRITE_ADDRESS_OUT <= WRITE_ADDRESS;
+			OP_CODE_D_E <=OP_CODE;
+			END IF; 
+
+		END IF;
+	END PROCESS;
+
+END ARCHITECTURE;
+
+
+
