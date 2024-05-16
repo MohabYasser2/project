@@ -20,6 +20,7 @@ MemWrite: OUT std_logic;
 Stall,Swap,Branch0,BranchU: OUT std_logic;
 Push,Pop,Insig: OUT std_logic;
 Protect,Free: OUT std_logic;
+callSig,retSig: OUT STD_LOGIC;
 Swaped_INST :OUT std_logic_vector(15 downto 0);
 OUT_PORT:OUT std_logic_vector(31 DOWNTO 0)
 
@@ -47,6 +48,8 @@ MemWrite: OUT std_logic;
 Stall,Swap,Branch0,BranchU: OUT std_logic;
 Push,Pop,Insig,Outsig: OUT std_logic;
 Protect,Free: OUT std_logic;
+call: OUT STD_LOGIC;
+Ret: OUT STD_LOGIC;
 Swap_INST:OUT std_logic_vector(15 downto 0)
 
 
@@ -71,7 +74,7 @@ SIGNAL TEMP:std_logic_vector(31 DOWNTO 0);
 Begin
 
 
-u0:Controlunit PORT MAP(CLK,RST,OPCODE,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,Swaped_INST);
+u0:Controlunit PORT MAP(CLK,RST,OPCODE,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,callSig,retSig,Swaped_INST);
 u1:REGISTERFILE32 PORT MAP(CLK,RST,RegWRPipeline,WriteReg,ReadReg1,ReadReg2,WriteAdd,TEMP,ReadData2);
 
 OUTSIG2 <=OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG & OUTSIG & OUTSIG ;
