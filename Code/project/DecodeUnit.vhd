@@ -31,31 +31,33 @@ END ENTITY;
 
 Architecture Arch of DecodeUnit is
 
-Component controlunit IS
+    COMPONENT controlunit IS
 
-PORT (
-CLK, RST : IN std_logic;
-OPCODE : IN std_logic_vector(4 DOWNTO 0);
-Src,DST:IN std_logic_vector(2 downto 0);
---control signals--
---MemtoReg chooses between memory output and Alu output--
---AluSrc chooses wether 2nd operand of Alu is RegSrc2 or ImmValue--
---RegWrite wether operation writes in register file or not--
---MemRead wether operation reads from memory--
---MemRead wether operation writes from memory--
-MemtoReg, ALUSrc,RegWrite : OUT std_logic;
-MemWrite: OUT std_logic;
-Stall,Swap,Branch0,BranchU: OUT std_logic;
-Push,Pop,Insig,Outsig: OUT std_logic;
-Protect,Free: OUT std_logic;
-call: OUT STD_LOGIC;
-Ret: OUT STD_LOGIC;
-Swap_INST:OUT std_logic_vector(15 downto 0)
-
-
-);
-
-END Component;
+    PORT (
+    CLK, RST : IN std_logic;
+    OPCODE : IN std_logic_vector(4 DOWNTO 0);
+    OGInstruction:IN  std_logic_vector(15 downto 0);
+    Src,DST:IN std_logic_vector(2 downto 0);
+    --control signals--
+    --MemtoReg chooses between memory output and Alu output--
+    --AluSrc chooses wether 2nd operand of Alu is RegSrc2 or ImmValue--
+    --RegWrite wether operation writes in register file or not--
+    --MemRead wether operation reads from memory--
+    --MemRead wether operation writes from memory--
+    MemtoReg, ALUSrc,RegWrite : OUT std_logic;
+    MemWrite: OUT std_logic;
+    Stall,Swap,Branch0,BranchU: OUT std_logic;
+    Push,Pop,Insig,Outsig: OUT std_logic;
+    Protect,Free: OUT std_logic;
+    call: OUT STD_LOGIC;
+    Ret: OUT STD_LOGIC;
+    Swap_INST:OUT std_logic_vector(15 downto 0)
+    
+    
+    
+    );
+    
+    END COMPONENT;
 
 Component REGISTERFILE32 IS
 
@@ -71,10 +73,12 @@ SIGNAL REGWR :std_logic;
 SIGNAL OUTSIG :std_logic;
 SIGNAL OUTSIG2:std_logic_vector(31 DOWNTO 0);
 SIGNAL TEMP:std_logic_vector(31 DOWNTO 0);
+SIGNAL TEMPOG:std_logic_vector(15 DOWNTO 0);
 Begin
 
+TEMPOG<=OPCODE &ReadReg1&ReadReg2&WriteAdd&"00";
 
-u0:Controlunit PORT MAP(CLK,RST,OPCODE,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,callSig,retSig,Swaped_INST);
+u0:Controlunit PORT MAP(CLK,RST,OPCODE,TEMPOG,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,callSig,retSig,Swaped_INST);
 u1:REGISTERFILE32 PORT MAP(CLK,RST,RegWRPipeline,WriteReg,ReadReg1,ReadReg2,WriteAdd,TEMP,ReadData2);
 
 OUTSIG2 <=OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG & OUTSIG & OUTSIG ;
