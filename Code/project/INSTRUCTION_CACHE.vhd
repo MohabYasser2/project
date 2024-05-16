@@ -8,7 +8,7 @@ PORT (
 CLK, RST : IN std_logic;
 PC : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 DATAOUT : OUT std_logic_vector(15 DOWNTO 0);
-RESET_VALUE : IN std_logic_vector(31 DOWNTO 0)
+RESET_VALUE : OUT std_logic_vector(31 DOWNTO 0)
 
 );
 
