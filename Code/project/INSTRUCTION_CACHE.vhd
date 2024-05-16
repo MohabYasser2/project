@@ -16,7 +16,7 @@ END ENTITY;
 
 ARCHITECTURE ARCH OF INSTRUCTION_CACHE IS
 signal DATA : std_logic_vector(15 DOWNTO 0);
-TYPE ram_type IS ARRAY(31 DOWNTO 0) of std_logic_vector(15 DOWNTO 0);
+TYPE ram_type IS ARRAY(4294967295 DOWNTO 0) of std_logic_vector(15 DOWNTO 0);
 SIGNAL INSTRUCTION_CACHE : ram_type ;
 
 BEGIN
