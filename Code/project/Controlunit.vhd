@@ -117,10 +117,10 @@ IF(opcode="10101") THEN --STD
 Swap_INST<="0000000000000000";
 END IF;
 IF(opcode="10110") THEN --PROTECT
-    control<="0000000000000000";
+    control<="0000000000001000";
 END IF;
 IF(opcode="10111") THEN --FREE
-    control<="0000000000000000";
+    control<="0000000000000100";
 END IF;
 IF(opcode="11000") THEN --JZ
     control<="0000000000000000";
