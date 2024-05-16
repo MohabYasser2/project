@@ -20,6 +20,7 @@ MemWrite: OUT std_logic;
 Stall,Swap,Branch0,BranchU: OUT std_logic;
 Push,Pop,Insig,Outsig: OUT std_logic;
 Protect,Free: OUT std_logic;
+call: OUT STD_LOGIC;
 Swap_INST:OUT std_logic_vector(15 downto 0)
 
 
@@ -74,46 +75,46 @@ BEGIN
 	END IF;
 
 IF(opcode="00010") THEN --NEG
-    control<="10100000000000";
+    control<="1010000000000000";
 END IF;
 IF(opcode="00011") THEN --INC
     control<="1010000000000000";
 END IF;
 IF(opcode="01000") THEN --SWAP
-    control<="10101100000000";
+    control<="1010110000000000";
 Swap_INST<=OGInstruction(15 downto 10) & OGInstruction(3 downto 1) &OGInstruction(6 downto 4)&OGInstruction(9 downto 7)&OGInstruction(1 downto 0);
 END IF;
 IF(opcode="01001") THEN --ADD
-    control<="10100000000000";
+    control<="1010000000000000";
 END IF;
 IF(opcode="01010") THEN --ADDI
-    control<="11100000000000";
+    control<="1110000000000000";
 END IF;
 IF(opcode="01011") THEN --SUB
-    control<="10100000000000";
+    control<="1010000000000000";
 END IF;
 IF(opcode="01100") THEN --SUBI
-    control<="11100000000000";
+    control<="1110000000000000";
 END IF;
 IF(opcode="01101") THEN --AND
-    control<="10100000000000";
+    control<="1010000000000000";
 END IF;
 IF(opcode="01111") THEN --XOR
-    control<="10100000000000";
+    control<="1010000000000000";
 END IF;
 IF(opcode="10001") THEN --PUSH
-    control<="00010000100000";
+    control<="0001000010000000";
 END IF;
 IF(opcode="10010") THEN --POP
-    control<="00100000010000";
+    control<="0010000001000000";
 END IF;
 IF(opcode="10100") THEN --LDD
-    control<="01101000000000";
-Swap_INST<="00000000000000000000000000000000";
+    control<="0110100000000000";
+Swap_INST<="000000000000000";
 END IF;
 IF(opcode="10101") THEN --STD 
-    control<="01011000000000";
-Swap_INST<="00000000000000000000000000000000";
+    control<="0101100000000000";
+Swap_INST<="0000000000000000";
 END IF;
 IF(opcode="10110") THEN --PROTECT
     control<="0000000000000000";
