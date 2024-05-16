@@ -14,8 +14,8 @@ FLAGS: IN std_logic_vector(3 downto 0);
 BRANCH_SIG_IN : IN std_logic;
 BRANCH_Z_SIG_IN : IN std_logic;
 Protect_sig : IN std_logic;
-free_sig : IN std_logic;
-PC: IN STD_LOGIC;
+Free_sig: IN STD_LOGIC;
+PC: IN std_logic_vector(31 DOWNTO 0);
 callSig: IN STD_LOGIC;
 
 

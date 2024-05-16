@@ -20,6 +20,7 @@ MemWrite: OUT std_logic;
 Stall,Swap,Branch0,BranchU: OUT std_logic;
 Push,Pop,Insig,Outsig: OUT std_logic;
 Protect,Free: OUT std_logic;
+call: OUT STD_LOGIC;
 Swap_INST:OUT std_logic_vector(15 downto 0)
 
 
