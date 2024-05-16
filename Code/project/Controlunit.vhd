@@ -82,7 +82,7 @@ IF(opcode="00011") THEN --INC
 END IF;
 IF(opcode="01000") THEN --SWAP
     control<="10101100000000";
-Swap_INST<=OGInstruction(15 downto 10) & OGInstruction(3 downto 1) &OGInstruction(6 downto 4)&OGInstruction(9 downto 7)&OGInstruction(1 downto 0);
+Swap_INST<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) &OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
 END IF;
 IF(opcode="01001") THEN --ADD
     control<="10100000000000";
