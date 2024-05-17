@@ -7,7 +7,7 @@ ENTITY E_M IS
 	PORT(	CLK, RST: IN STD_LOGIC;
 		Alu_output: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 		PC: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
-		CCR_Flags: IN STD_LOGIC_VECTOR(3 DOWNTO 0); 
+		Flags: IN STD_LOGIC_VECTOR(3 DOWNTO 0); 
 		WriteAddress :IN STD_LOGIC_VECTOR(2 DOWNTO 0); 
 		inport :IN std_logic_vector(31 DOWNTO 0);
 		MemToReg :IN std_logic;
@@ -25,10 +25,12 @@ ENTITY E_M IS
 		RET_SIG: IN STD_LOGIC;
 		RTI_SIG: IN STD_LOGIC;
 		INTERRUPT_SIG: IN STD_LOGIC;
+		PREV_FLAGS: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 		
 		
 		Alu_outputOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 		PCOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
+		FLAGS_Out: OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 		CCR_FlagsOut: OUT STD_LOGIC_VECTOR(3 DOWNTO 0); 
 		WriteAddressOut  :OUT STD_LOGIC_VECTOR(2 DOWNTO 0); 
 		inportOut  :OUT std_logic_vector(31 DOWNTO 0);
@@ -85,13 +87,14 @@ BEGIN
 			RET_SIG_out <= '0';
 			INTERRUPT_SIG_out <= '0';
 			RTI_SIG_out <= '0';
+			FLAGS_Out<= (others =>'0');
 
 			ELSE
 			Write_DATA_Out  <= Write_DATA;
 			
 			Alu_outputOut<= Alu_output;
 			PCOut<= PC;
-			CCR_FlagsOut<= CCR_Flags;
+			CCR_FlagsOut<= PREV_Flags;
 			WriteAddressOut  <=WriteAddress;
 			inportOut  <= inport;
 			MemToRegOut   <= MemToReg;
@@ -108,6 +111,7 @@ BEGIN
 			RET_SIG_out <= RET_SIG;
 			INTERRUPT_SIG_out <= INTERRUPT_SIG;
 			RTI_SIG_out <= RTI_SIG;
+			FLAGS_Out<= Flags;
 
 			
 			END IF; 

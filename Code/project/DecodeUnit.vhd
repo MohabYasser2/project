@@ -20,7 +20,7 @@ MemWrite: OUT std_logic;
 Stall,Swap,Branch0,BranchU: OUT std_logic;
 Push,Pop,Insig: OUT std_logic;
 Protect,Free: OUT std_logic;
-callSig,retSig: OUT STD_LOGIC;
+callSig,retSig,RTI_SIG: OUT STD_LOGIC;
 Swaped_INST :OUT std_logic_vector(15 downto 0);
 OUT_PORT:OUT std_logic_vector(31 DOWNTO 0)
 
@@ -34,28 +34,29 @@ Architecture Arch of DecodeUnit is
     COMPONENT controlunit IS
 
     PORT (
-    CLK, RST : IN std_logic;
-    OPCODE : IN std_logic_vector(4 DOWNTO 0);
-    OGInstruction:IN  std_logic_vector(15 downto 0);
-    Src,DST:IN std_logic_vector(2 downto 0);
-    --control signals--
-    --MemtoReg chooses between memory output and Alu output--
-    --AluSrc chooses wether 2nd operand of Alu is RegSrc2 or ImmValue--
-    --RegWrite wether operation writes in register file or not--
-    --MemRead wether operation reads from memory--
-    --MemRead wether operation writes from memory--
-    MemtoReg, ALUSrc,RegWrite : OUT std_logic;
-    MemWrite: OUT std_logic;
-    Stall,Swap,Branch0,BranchU: OUT std_logic;
-    Push,Pop,Insig,Outsig: OUT std_logic;
-    Protect,Free: OUT std_logic;
-    call: OUT STD_LOGIC;
-    Ret: OUT STD_LOGIC;
-    Swap_INST:OUT std_logic_vector(15 downto 0)
-    
-    
-    
-    );
+CLK, RST : IN std_logic;
+OPCODE : IN std_logic_vector(4 DOWNTO 0);
+OGInstruction:IN  std_logic_vector(15 downto 0);
+Src,DST:IN std_logic_vector(2 downto 0);
+--control signals--
+--MemtoReg chooses between memory output and Alu output--
+--AluSrc chooses wether 2nd operand of Alu is RegSrc2 or ImmValue--
+--RegWrite wether operation writes in register file or not--
+--MemRead wether operation reads from memory--
+--MemRead wether operation writes from memory--
+MemtoReg, ALUSrc,RegWrite : OUT std_logic;
+MemWrite: OUT std_logic;
+Stall,Swap,Branch0,BranchU: OUT std_logic;
+Push,Pop,Insig,Outsig: OUT std_logic;
+Protect,Free: OUT std_logic;
+call: OUT STD_LOGIC;
+Ret: OUT STD_LOGIC;
+Swap_INST:OUT std_logic_vector(15 downto 0);
+RTI_SIG: OUT STD_LOGIC
+
+
+
+);
     
     END COMPONENT;
 

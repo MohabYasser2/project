@@ -14,7 +14,8 @@ IMM_VALUE: IN std_logic_vector(31 DOWNTO 0);
 RTI_SIG: IN std_logic;
 RTI_FLAGS: IN std_logic_vector(3 DOWNTO 0);
 ALU_OUTPUT: OUT  std_logic_vector(31 DOWNTO 0);
-FLAGS: OUT std_logic_vector(3 downto 0)
+FLAGS: OUT std_logic_vector(3 downto 0);
+PREV_FLAGS: OUT std_logic_vector(3 downto 0)
 );
 
 END ENTITY;
@@ -62,6 +63,7 @@ U1:ALU PORT MAP(CLK,RST,Read_data1,MUXOUT,OP_CODE,temp_flags,AlU_OUTPUT,temp_fla
 U2:CCR Port MAP(CLK,RST,RTI_SIG,temp_flags1,RTI_FLAGS,temp_flags);
 
 FLAGS <= temp_flags1;
+PREV_FLAGS <= temp_flags;
 
 
 END ARCHITECTURE;
