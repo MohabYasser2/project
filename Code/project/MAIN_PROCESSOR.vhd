@@ -21,7 +21,7 @@ Architecture MAIN of MAIN_PROCESSOR IS
 COMPONENT Fetch IS
 
 PORT (
-CLK,RST:IN std_logic;
+CLK,RST,INTERRUPT_SIG,RESET_SIG:IN std_logic;
 Branch0: IN std_logic;
 BranchU: IN std_logic;
 Stall: IN std_logic;
@@ -40,24 +40,23 @@ END COMPONENT;
 COMPONENT F_D IS
 
 
-	PORT(	
-		CLK, RST,PREV_STALL_IN: IN STD_LOGIC;
-		INST: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		PC: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
-		IN_PORT_IN: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
-		
-		PREV_STALL_OUT: OUT STD_LOGIC;
-		PC_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
-		OP_CODE: OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-		SRC1, SRC2, DEST: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-		IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+PORT(	CLK, RST,PREV_STALL_IN: IN STD_LOGIC;
+INST: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+PC: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+IN_PORT_IN: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+INTERRUPT_SIG: IN STD_LOGIC;
+PREV_STALL_OUT: OUT STD_LOGIC;
+PC_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
+OP_CODE: OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+SRC1, SRC2, DEST: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+INTERRUPT_SIG_OUT: OUT STD_LOGIC
 
 
 
 
 
-);
-		
+);	
 END COMPONENT;
 
 COMPONENT DecodeUnit IS
@@ -78,25 +77,35 @@ MemWrite: OUT std_logic;
 Stall,Swap,Branch0,BranchU: OUT std_logic;
 Push,Pop,Insig: OUT std_logic;
 Protect,Free: OUT std_logic;
+callSig,retSig: OUT STD_LOGIC;
 Swaped_INST :OUT std_logic_vector(15 downto 0);
-OUT_PORT: OUT std_logic_vector(31 DOWNTO 0)
+OUT_PORT:OUT std_logic_vector(31 DOWNTO 0)
+
 
 );
 END COMPONENT;
 
 COMPONENT D_E IS
-	PORT(	CLK, RST: IN STD_LOGIC;
+PORT(	CLK, RST: IN STD_LOGIC;
 		MemToReg,RegWrite,MemWrite,Branch_Sig,Branch_Z_Sig,PUSH,POP,In_SIG,Protect,Free,ALU_SRC: IN STD_LOGIC;
 		PC,READ_DATA1,READ_DATA2,IMM_VALUE: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
 		IN_PORT_IN: IN STD_LOGIC_VECTOR(31 DOWNTO 0);  
 		WRITE_ADDRESS:IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 		OP_CODE: IN STD_LOGIC_VECTOR(4 DOWNTO 0); 
+		callSig: IN STD_LOGIC;
+		RET_SIG: IN STD_LOGIC;
+		RTI_SIG: IN STD_LOGIC;
+		INTERRUPT_SIG: IN STD_LOGIC;
 
 		MemToReg_OUT,RegWrite_OUT,MemWrite_OUT,Branch_Sig_OUT,Branch_Z_Sig_OUT,PUSH_OUT,POP_OUT,In_SIG_OUT,Protect_OUT,Free_OUT,ALU_SRC_OUT: OUT STD_LOGIC;
 		PC_OUT,READ_DATA1_OUT,READ_DATA2_OUT,IMM_VALUE_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
 		IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);  
 		WRITE_ADDRESS_OUT:OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-		OP_CODE_D_E: OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
+		OP_CODE_D_E: OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+		callSig_out: OUT STD_LOGIC;
+		RET_SIG_OUT: OUT STD_LOGIC;
+		RTI_SIG_OUT: OUT STD_LOGIC;
+		INTERRUPT_SIG_OUT: OUT STD_LOGIC
 
 
 
@@ -115,6 +124,8 @@ OP_CODE:IN std_logic_vector(4 DOWNTO 0);
 Read_Data1: IN std_logic_vector(31 DOWNTO 0);
 Read_Data2: IN std_logic_vector(31 DOWNTO 0);
 IMM_VALUE: IN std_logic_vector(31 DOWNTO 0);
+RTI_SIG: IN std_logic;
+RTI_FLAGS: IN std_logic_vector(3 DOWNTO 0);
 ALU_OUTPUT: OUT  std_logic_vector(31 DOWNTO 0);
 FLAGS: OUT std_logic_vector(3 downto 0)
 );
@@ -122,43 +133,49 @@ FLAGS: OUT std_logic_vector(3 downto 0)
 END COMPONENT;
 
 COMPONENT E_M IS
-	PORT(	
-	CLK, RST: IN STD_LOGIC;
-	Alu_output: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	PC: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
-	CCR_Flags: IN STD_LOGIC_VECTOR(3 DOWNTO 0); 
-	WriteAddress :IN STD_LOGIC_VECTOR(2 DOWNTO 0); 
-	inport :IN std_logic_vector(31 DOWNTO 0);
-	MemToReg :IN std_logic;
-	RegWrite : IN std_logic;
-	MemWrite : IN std_logic;
-	Branch_Sig  :IN std_logic;
-	Branch_Z_Sig  :IN std_logic;
-	PUSH  :IN std_logic;
-	POP  :IN std_logic;
-	In_SIG  :IN std_logic;
-	Protect  :IN std_logic;
-	Free  :IN std_logic;
-	Write_data:IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
-	
-	
-	Alu_outputOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-	PCOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
-	CCR_FlagsOut: OUT STD_LOGIC_VECTOR(3 DOWNTO 0); 
-	WriteAddressOut  :OUT STD_LOGIC_VECTOR(2 DOWNTO 0); 
-	inportOut  :OUT std_logic_vector(31 DOWNTO 0);
-	MemToRegOut  :OUT std_logic;
-	RegWriteOut  :OUT std_logic;
-	MemWriteOut  :OUT std_logic;
-	Branch_SigOut :OUT std_logic;
-	Branch_Z_SigOut  :OUT std_logic;
-	PUSHOut  :OUT std_logic;
-	POPOut  : OUT std_logic;
-	In_SIGOut: OUT std_logic;
-	ProtectOut : OUT std_logic;
-	FreeOut :OUT std_logic;
-	Write_data_out:out STD_LOGIC_VECTOR(31 DOWNTO 0)
+PORT(	CLK, RST: IN STD_LOGIC;
+Alu_output: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+PC: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+CCR_Flags: IN STD_LOGIC_VECTOR(3 DOWNTO 0); 
+WriteAddress :IN STD_LOGIC_VECTOR(2 DOWNTO 0); 
+inport :IN std_logic_vector(31 DOWNTO 0);
+MemToReg :IN std_logic;
+RegWrite : IN std_logic;
+MemWrite : IN std_logic;
+Branch_Sig  :IN std_logic;
+Branch_Z_Sig  :IN std_logic;
+PUSH  :IN std_logic;
+POP  :IN std_logic;
+In_SIG  :IN std_logic;
+Protect  :IN std_logic;
+Free  :IN std_logic;
+Write_data:IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+callSig: IN STD_LOGIC;
+RET_SIG: IN STD_LOGIC;
+RTI_SIG: IN STD_LOGIC;
+INTERRUPT_SIG: IN STD_LOGIC;
 
+
+Alu_outputOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+PCOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
+CCR_FlagsOut: OUT STD_LOGIC_VECTOR(3 DOWNTO 0); 
+WriteAddressOut  :OUT STD_LOGIC_VECTOR(2 DOWNTO 0); 
+inportOut  :OUT std_logic_vector(31 DOWNTO 0);
+MemToRegOut  :OUT std_logic;
+RegWriteOut  :OUT std_logic;
+MemWriteOut  :OUT std_logic;
+Branch_SigOut :OUT std_logic;
+Branch_Z_SigOut  :OUT std_logic;
+PUSHOut  :OUT std_logic;
+POPOut  : OUT std_logic;
+In_SIGOut: OUT std_logic;
+ProtectOut : OUT std_logic;
+FreeOut :OUT std_logic;
+Write_data_out:out STD_LOGIC_VECTOR(31 DOWNTO 0);
+callSig_out: OUT STD_LOGIC;
+RET_SIG_out: OUT STD_LOGIC;
+RTI_SIG_out: OUT STD_LOGIC;
+INTERRUPT_SIG_out: OUT STD_LOGIC
 
 
 
@@ -170,29 +187,39 @@ END COMPONENT;
 COMPONENT MEMORY IS
 
 PORT (
-CLK,RST,PUSH,POP,MEM_WRITE:IN std_logic;
+CLK,RST,PUSH,POP,MEM_WRITE,INTERRUPT_SIG:IN std_logic;
 ALU_OUTPUT: IN std_logic_vector(31 DOWNTO 0);
 Write_DATA: IN std_logic_vector(31 DOWNTO 0);
 MEM_OUTPUT: OUT  std_logic_vector(31 DOWNTO 0);
 FLAGS: IN std_logic_vector(3 downto 0);
 BRANCH_SIG_IN : IN std_logic;
 BRANCH_Z_SIG_IN : IN std_logic;
-BRANCH_SIG : OUT std_logic;
-BRANCH_Z_SIG : OUT std_logic
+Protect_sig : IN std_logic;
+Free_sig: IN STD_LOGIC;
+PC: IN std_logic_vector(31 DOWNTO 0);
+callSig: IN STD_LOGIC;
+RET_SIG: IN STD_LOGIC;
+RTI_SIG: IN STD_LOGIC;
 
+RET_SIG_OUT: OUT STD_LOGIC;
+RTI_SIG_OUT: OUT STD_LOGIC;
+BRANCH_SIG : OUT std_logic;
+BRANCH_Z_SIG : OUT std_logic;
+FLUSH_SIG: OUT STD_LOGIC;
+Flags_out: OUT std_logic_vector(3 DOWNTO 0)
 );
 
 END COMPONENT;
 
 COMPONENT M_WB IS
-	PORT(	CLK, RST: IN STD_LOGIC;
-		MemToReg,RegWrite,In_SIG: IN STD_LOGIC;
-		MEM_OUTPUT,ALU_OUTPUT,IN_PORT: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
-		Write_Address: IN STD_LOGIC_VECTOR(2 DOWNTO 0); 
-		
-		MemToReg_OUT,RegWrite_OUT,In_SIG_OUT: OUT STD_LOGIC;
-		MEM_OUTPUT_OUT,ALU_OUTPUT_OUT,IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
-		Write_Address_OUT: OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
+PORT(	CLK, RST: IN STD_LOGIC;
+MemToReg,RegWrite,In_SIG: IN STD_LOGIC;
+MEM_OUTPUT,ALU_OUTPUT,IN_PORT: IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
+Write_Address: IN STD_LOGIC_VECTOR(2 DOWNTO 0); 
+
+MemToReg_OUT,RegWrite_OUT,In_SIG_OUT: OUT STD_LOGIC;
+MEM_OUTPUT_OUT,ALU_OUTPUT_OUT,IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
+Write_Address_OUT: OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
 
 
 
