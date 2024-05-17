@@ -41,18 +41,21 @@ BEGIN
 			PREV_STALL_OUT <= '0';
 			INTERRUPT_SIG_OUT <= '0';
 			else
+			
 			OP_CODE <= INST(15 DOWNTO 11);
 			SRC1 <= INST(10 DOWNTO 8); 
 			SRC2 <= INST(7 DOWNTO 5);
 			DEST <= INST(4 DOWNTO 2);
+
+				
+			PREV_STALL_OUT <= PREV_STALL_IN;
+			IN_PORT_OUT<=IN_PORT_IN;
+			INTERRUPT_SIG_OUT <= INTERRUPT_SIG;
 				if INTERRUPT_SIG = '1' then
 				PC_OUT <= STD_LOGIC_VECTOR(unsigned(PC) - 1 );
 				else
 				PC_OUT <= PC;
 				end if;
-			PREV_STALL_OUT <= PREV_STALL_IN;
-			IN_PORT_OUT<=IN_PORT_IN;
-			INTERRUPT_SIG_OUT <= INTERRUPT_SIG;
 			END IF; 
 
 		END IF;
