@@ -12,6 +12,7 @@ ReadReg2: IN std_logic_vector(2 DOWNTO 0);
 RegWRPipeline: IN std_logic;
 WriteReg:Std_logic_vector(31 DOWNTO 0);
 WriteAdd:std_logic_vector(2 DOWNTO 0);
+
 ReadData1: OUT std_logic_vector(31 DOWNTO 0);
 ReadData2: OUT std_logic_vector(31 DOWNTO 0);
 
