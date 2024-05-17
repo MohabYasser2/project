@@ -23,6 +23,7 @@ ENTITY E_M IS
 		Write_data:IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
 		callSig: IN STD_LOGIC;
 		RET_SIG: IN STD_LOGIC;
+		INTERRUPT_SIG: IN STD_LOGIC;
 		
 		
 		Alu_outputOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -42,7 +43,8 @@ ENTITY E_M IS
 		FreeOut :OUT std_logic;
 		Write_data_out:out STD_LOGIC_VECTOR(31 DOWNTO 0);
 		callSig_out: OUT STD_LOGIC;
-		RET_SIG_out: OUT STD_LOGIC
+		RET_SIG_out: OUT STD_LOGIC;
+		INTERRUPT_SIG_out: OUT STD_LOGIC
 
 
 
@@ -79,6 +81,7 @@ BEGIN
 			FreeOut  <= '0';
 			callSig_out <= '0';
 			RET_SIG_out <= '0';
+			INTERRUPT_SIG_out <= '0';
 
 			ELSE
 			Write_DATA_Out  <= Write_DATA;
@@ -100,6 +103,7 @@ BEGIN
 			FreeOut  <= Free;
 			callSig_out <= callSig;
 			RET_SIG_out <= RET_SIG;
+			INTERRUPT_SIG_out <= INTERRUPT_SIG;
 
 			
 			END IF; 
