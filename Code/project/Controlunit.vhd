@@ -133,7 +133,7 @@ IF(opcode="11010") THEN --CALL
     control<="0001000000000010";
 END IF;
 IF(opcode="11011") THEN --RET
-    control<="0000000000000001";
+    control<="1000000000000001";
 END IF;
 IF(opcode="11100") THEN --RTI
     control<="0000000000000000";
