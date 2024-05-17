@@ -5,7 +5,7 @@ USE IEEE.numeric_std.all;
 ENTITY DataMemory IS
 
 PORT (
-CLK,RST,WE,INTERRUPT_SIG: IN std_logic;
+CLK,RST,WE,INTERRUPT_SIG,RTI_SIG: IN std_logic;
 Protect_SIG,Free_SIG : IN std_logic;
 ADDRESS : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 WriteData: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -43,6 +43,10 @@ RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0))) ) <= '0' & WriteData(31 DOWNTO 16
 RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0))) + 1 ) <='0'&  WriteData(15 DOWNTO 0);
 RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0))) - 2) <= "0000000000000" & FLAGS(3 DOWNTO 0);
 RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0))) - 1 ) <="00000000000000000" ;
+END IF;
+
+IF RTI_SIG = '1' THEN
+FLAGS_OUT <= RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0))) - 2)(3 DOWNTO 0);
 END IF;
 
 IF RST = '1' THEN
