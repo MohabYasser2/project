@@ -48,7 +48,7 @@ END IF;
 
 END PROCESS;
 
---DATAOUT <= RAM(to_integer(unsigned(ADDRESS(31 DOWNTO 16)))) & RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0)))) ;
+DATAOUT <= RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0 ))))(15 downto 0) & RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0) )) + 1)(15 downto 0) ;
 
 
 END ARCHITECTURE;

@@ -22,6 +22,7 @@ ENTITY E_M IS
 		Free  :IN std_logic;
 		Write_data:IN STD_LOGIC_VECTOR(31 DOWNTO 0); 
 		callSig: IN STD_LOGIC;
+		RET_SIG: IN STD_LOGIC;
 		
 		
 		Alu_outputOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -40,7 +41,8 @@ ENTITY E_M IS
 		ProtectOut : OUT std_logic;
 		FreeOut :OUT std_logic;
 		Write_data_out:out STD_LOGIC_VECTOR(31 DOWNTO 0);
-		callSig_out: OUT STD_LOGIC
+		callSig_out: OUT STD_LOGIC;
+		RET_SIG_out: OUT STD_LOGIC
 
 
 
@@ -76,6 +78,7 @@ BEGIN
 			ProtectOut  <= '0';
 			FreeOut  <= '0';
 			callSig_out <= '0';
+			RET_SIG_out <= '0';
 
 			ELSE
 			Write_DATA_Out  <= Write_DATA;
@@ -96,6 +99,7 @@ BEGIN
 			ProtectOut  <= Protect;
 			FreeOut  <= Free;
 			callSig_out <= callSig;
+			RET_SIG_out <= RET_SIG;
 
 			
 			END IF; 

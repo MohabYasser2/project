@@ -17,7 +17,7 @@ Protect_sig : IN std_logic;
 Free_sig: IN STD_LOGIC;
 PC: IN std_logic_vector(31 DOWNTO 0);
 callSig: IN STD_LOGIC;
-
+RET_SIG: IN STD_LOGIC;
 
 
 BRANCH_SIG : OUT std_logic;
@@ -73,7 +73,7 @@ Signal Dout : std_logic_vector(31 DOWNTO 0);
 
 
 BEGIN
-OR_OUTPUT <= POP OR PUSH OR CallSIG ;
+OR_OUTPUT <= POP OR PUSH OR CallSIG OR RET_SIG;
 BRANCH_SIG <= BRANCH_SIG_IN;
 BRANCH_Z_SIG <= BRANCH_Z_SIG_IN AND FLAGS(0);
 

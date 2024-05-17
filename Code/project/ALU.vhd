@@ -8,8 +8,9 @@ PORT(
 	CLK,RST: IN STD_LOGIC ;
 	A,B: IN STD_LOGIC_VECTOR (31 downto 0);
 	OP_CODE : IN std_logic_vector (4 DOWNTO 0);
+	FLAGS_IN: IN STD_LOGIC_VECTOR (3 downto 0);
 	F: OUT std_logic_vector (31 downto 0);
-	FLAGS_IN: OUT STD_LOGIC_VECTOR (3 downto 0)
+	FLAGS_OUT: OUT STD_LOGIC_VECTOR (3 downto 0)
 );
 	
 	
@@ -313,7 +314,7 @@ end process;
 
 --FLAGS
 
-Flags_IN <= Flags;
+Flags_OUT <= Flags AND FLAGS_IN;
 F <= External_F(32 downto 1);
 
 
