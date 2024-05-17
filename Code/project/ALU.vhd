@@ -30,6 +30,10 @@ VARIABLE Internal_F: STD_LOGIC_VECTOR (32 downto 0);
 VARIABLE Temp_F: STD_LOGIC_VECTOR (32 downto 0);
 begin
 --OUTPUT
+IF RST = '1' THEN
+	FLAGS <= (OTHERS => '0');
+	External_F <= (OTHERS => '0');
+ELSIF FALLING_EDGE(CLK) THEN
 Case OP_CODE IS
 
 
@@ -310,6 +314,7 @@ WHEN others =>
 	null;
 end case;
 External_F <= Internal_F ;
+	end if;
 end process;
 
 --FLAGS

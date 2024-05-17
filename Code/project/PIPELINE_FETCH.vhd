@@ -40,7 +40,7 @@ BEGIN
 			IN_PORT_OUT <= (OTHERS => '0');
 			PREV_STALL_OUT <= '0';
 			INTERRUPT_SIG_OUT <= '0';
-
+			else
 			OP_CODE <= INST(15 DOWNTO 11);
 			SRC1 <= INST(10 DOWNTO 8); 
 			SRC2 <= INST(7 DOWNTO 5);
