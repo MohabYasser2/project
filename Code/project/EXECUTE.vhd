@@ -53,7 +53,7 @@ O : OUT STD_LOGIC_VECTOR (N-1 DOWNTO 0 ));
 END component;
 
 --Signals
-Signal MUXOUT : std_logic_vector(31 DOWNTO 0);
+Signal MUXOUT : std_logic_vector(31 DOWNTO 0) := (others => '0');
 signal temp_flags : std_logic_vector(3 downto 0) := (others => '0');
 signal temp_flags1 : std_logic_vector(3 downto 0) := (others => '0');
 BEGIN

@@ -70,11 +70,12 @@ DATAOUT1, DATAOUT2 : OUT std_logic_vector(31 DOWNTO 0)
 );
 
 END Component;
-SIGNAL REGWR :std_logic;
-SIGNAL OUTSIG :std_logic;
-SIGNAL OUTSIG2:std_logic_vector(31 DOWNTO 0);
-SIGNAL TEMP:std_logic_vector(31 DOWNTO 0);
-SIGNAL TEMPOG:std_logic_vector(15 DOWNTO 0);
+SIGNAL REGWR :std_logic := '0';
+SIGNAL OUTSIG :std_logic := '0';
+SIGNAL OUTSIG2:std_logic_vector(31 DOWNTO 0) := (others => '0');
+SIGNAL TEMP:std_logic_vector(31 DOWNTO 0) := (others => '0');
+SIGNAL TEMPOG:std_logic_vector(15 DOWNTO 0) := (others => '0');
+
 Begin
 
 TEMPOG<=OPCODE &ReadReg1&ReadReg2&WriteAdd&"00";

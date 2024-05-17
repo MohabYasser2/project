@@ -243,81 +243,81 @@ O : OUT STD_LOGIC_VECTOR (N-1 DOWNTO 0 ));
 
 END component;
 signal ALU_OUTPUT : std_logic_vector(31 downto 0) := (others => '0'); -- ALU output data (32 bits)
-signal ALU_OUTPUT_M_WB,IN_PORT_OUT_M_WB: std_logic_vector(31 DOWNTO 0);
-signal ALU_Src: std_logic;
-signal ALU_SRC_D_E : std_logic; -- ALU source operand select (2 bits)
-signal Alu_outputOut_E_M: std_logic_vector(31 DOWNTO 0);
+signal ALU_OUTPUT_M_WB,IN_PORT_OUT_M_WB: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal ALU_Src: std_logic:= '0';
+signal ALU_SRC_D_E : std_logic:= '0'; -- ALU source operand select (2 bits)
+signal Alu_outputOut_E_M: std_logic_vector(31 DOWNTO 0):= (others => '0');
 signal BRANCH_ADDRESS_M : std_logic_vector(31 downto 0) := (others => '0'); -- Branch address (Memory stage)
-signal BRANCH_SIG_M: std_logic;
-signal BRANCH_SIG_OUT,BRANCH_SIG_OUT_D_E,BRANCH_SIG_OUT_E_M: std_logic;
-signal BRANCH_Z_SIG_M: std_logic;
-signal BRANCH_Z_SIG_OUT,BRANCH_Z_SIG_OUT_D_E,BRANCH_Z_SIG_OUT_E_M: std_logic;
-signal CALL_SIG_D: std_logic;
-signal CAll_INSTRUCTION: std_logic_vector(31 DOWNTO 0);
-signal DEST: std_logic_vector(2 DOWNTO 0);
-signal EXTENDED_IMM: std_logic_vector(31 DOWNTO 0);
+signal BRANCH_SIG_M: std_logic:= '0';
+signal BRANCH_SIG_OUT,BRANCH_SIG_OUT_D_E,BRANCH_SIG_OUT_E_M: std_logic:= '0';
+signal BRANCH_Z_SIG_M: std_logic:= '0';
+signal BRANCH_Z_SIG_OUT,BRANCH_Z_SIG_OUT_D_E,BRANCH_Z_SIG_OUT_E_M: std_logic:= '0';
+signal CALL_SIG_D: std_logic:= '0';
+signal CAll_INSTRUCTION: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal DEST: std_logic_vector(2 DOWNTO 0):= (others => '0');
+signal EXTENDED_IMM: std_logic_vector(31 DOWNTO 0):= (others => '0');
 signal FLAGS : std_logic_vector(3 downto 0) := (others => '0');        -- Status flags (4 bits)
-signal FLAGS_OUT_E_M: std_logic_vector(3 DOWNTO 0);
-signal FETECHED_INSTRUCTION: std_logic_vector(15 DOWNTO 0);
-signal FLUSH_SIG_M: std_logic;
+signal FLAGS_OUT_E_M: std_logic_vector(3 DOWNTO 0):= (others => '0');
+signal FETECHED_INSTRUCTION: std_logic_vector(15 DOWNTO 0):= (others => '0');
+signal FLUSH_SIG_M: std_logic:= '0';
 signal Free : std_logic := '0';           -- Resource management (might be specific to your architecture)
-signal Free_OUT_D_E,ALU_SRC_OUT_D_E: std_logic;
-signal IMM_VALUE : std_logic_vector(31 downto 0);
-signal IMM_VALUE_OUT_D_E: std_logic_vector(31 DOWNTO 0);
-signal IN_PORT_OUT_D_E: std_logic_vector(31 DOWNTO 0);
-signal IN_PORT_OUT_E_M: std_logic_vector(31 DOWNTO 0);
-signal IN_PORT_OUT_F_D: std_logic_vector(31 DOWNTO 0);
-signal IN_PORT_OUT_W_MB: std_logic_vector(31 DOWNTO 0);
+signal Free_OUT_D_E,ALU_SRC_OUT_D_E: std_logic:= '0';
+signal IMM_VALUE : std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal IMM_VALUE_OUT_D_E: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal IN_PORT_OUT_D_E: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal IN_PORT_OUT_E_M: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal IN_PORT_OUT_F_D: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal IN_PORT_OUT_W_MB: std_logic_vector(31 DOWNTO 0):= (others => '0');
 signal Insig : std_logic := '0';          -- Unidentified signal purpose
-Signal In_SIG,in_sig_out_M_WB : std_Logic;
-signal INTERRUPT_SIG_out_F_D,INTERRUPT_SIG_out_E_M,INTERRUPT_SIG_out_D_E: std_logic;
+Signal In_SIG,in_sig_out_M_WB : std_Logic:= '0';
+signal INTERRUPT_SIG_out_F_D,INTERRUPT_SIG_out_E_M,INTERRUPT_SIG_out_D_E: std_logic:= '0';
 signal MemToReg : std_logic := '0';  -- Whether to send ALU output to register file
-signal MemToReg_OUT_D_E,RegWrite_OUT_D_E,MemWrite_OUT_D_E,PUSH_OUT_D_E,POP_OUT_D_E,In_SIG_OUT_D_E,Protect_OUT_D_E: std_logic;
-signal MemToReg_OUT_M_WB,RegWrite_OUT_M_WB,In_SIG_M_WB: std_logic;
-signal MemToReg_Out_E_M,RegWrite_Out_E_M,MemWrite_Out_E_M,PUSH,POP,PUSH_Out_E_M,POP_Out_E_M,In_SIG_Out_E_M,Protect_Out_E_M,Free_Out_E_M: std_logic;
+signal MemToReg_OUT_D_E,RegWrite_OUT_D_E,MemWrite_OUT_D_E,PUSH_OUT_D_E,POP_OUT_D_E,In_SIG_OUT_D_E,Protect_OUT_D_E: std_logic:= '0';
+signal MemToReg_OUT_M_WB,RegWrite_OUT_M_WB,In_SIG_M_WB: std_logic:= '0';
+signal MemToReg_Out_E_M,RegWrite_Out_E_M,MemWrite_Out_E_M,PUSH,POP,PUSH_Out_E_M,POP_Out_E_M,In_SIG_Out_E_M,Protect_Out_E_M,Free_Out_E_M: std_logic:= '0';
 signal MemWrite : std_logic := '0';  -- Enable writing to memory
-signal MEM_OUTPUT: std_logic_vector(31 DOWNTO 0);
-signal MEM_OUTPUT_M_WB: std_logic_vector(31 DOWNTO 0);
-signal OP_CODE: std_logic_vector(4 DOWNTO 0);
-signal OP_CODE_D_E: std_logic_vector(4 DOWNTO 0);
-signal Out1,Out2: std_logic_vector(31 DOWNTO 0);
-signal PC_OUT_D_E,PC_OUT_E_M,PC_OUT_W_MB: std_logic_vector(31 DOWNTO 0);
-signal PC_OUT_F_D: std_logic_vector(31 DOWNTO 0);
-signal PC_SAVED: std_logic_vector(31 DOWNTO 0);
+signal MEM_OUTPUT: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal MEM_OUTPUT_M_WB: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal OP_CODE: std_logic_vector(4 DOWNTO 0):= (others => '0');
+signal OP_CODE_D_E: std_logic_vector(4 DOWNTO 0):= (others => '0');
+signal Out1,Out2: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal PC_OUT_D_E,PC_OUT_E_M,PC_OUT_W_MB: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal PC_OUT_F_D: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal PC_SAVED: std_logic_vector(31 DOWNTO 0):= (others => '0');
 signal PREV_FLAGS : std_logic_vector(3 downto 0) := (others => '0');    -- Previous flags register
-signal PREV_FLAGS_E_M: std_logic_vector(3 DOWNTO 0);
-signal PREV_STALL_OUT: std_logic;
+signal PREV_FLAGS_E_M: std_logic_vector(3 DOWNTO 0):= (others => '0');
+signal PREV_STALL_OUT: std_logic:= '0';
 signal Protect : std_logic := '0';        -- Memory protection (might be specific to your architecture)
-signal ReadData1,ReadData2: std_logic_vector(31 DOWNTO 0);
-signal ReadData1_OUT_D_E,ReadData2_OUT_D_E: std_logic_vector(31 DOWNTO 0);
+signal ReadData1,ReadData2: std_logic_vector(31 DOWNTO 0):= (others => '0');
+signal ReadData1_OUT_D_E,ReadData2_OUT_D_E: std_logic_vector(31 DOWNTO 0):= (others => '0');
 signal RegWrite : std_logic := '0';  -- Enable writing to register file
-signal RegWrite_M_WB: std_logic;
+signal RegWrite_M_WB: std_logic:= '0';
 signal RET_SIG_M : std_logic := '0'; -- Return from subroutine (Memory stage)
-signal RET_SIG_OUT_D_E,RET_SIG_out_E_M,RET_SIG_OUT_M: std_logic;
+signal RET_SIG_OUT_D_E,RET_SIG_out_E_M,RET_SIG_OUT_M: std_logic:= '0';
 signal RET_SIG_out : std_logic := '0'; -- Return from subroutine signal (generated)
 signal RTI_FLAGS_M : std_logic_vector(3 downto 0) := (others => '0'); -- Return from interrupt flags (Memory stage)
 signal RTI_SIG_M : std_logic := '0'; -- Return from interrupt (Memory stage)
-signal RTI_SIG_OUT_D_E,RTI_SIG_out_E_M,RTI_SIG_OUT_M: std_logic;
+signal RTI_SIG_OUT_D_E,RTI_SIG_out_E_M,RTI_SIG_OUT_M: std_logic:= '0';
 signal RTI_SIG_OUT : std_logic := '0'; -- Return from interrupt signal (external)
-signal SRC1,SRC2: std_logic_vector(2 DOWNTO 0);
+signal SRC1,SRC2: std_logic_vector(2 DOWNTO 0):= (others => '0');
 signal STALL : std_logic := '0';     -- Pipeline stall signal
 signal Swap : std_logic := '0';          -- Data swap operation (less common)
-signal Swaped_INST: std_logic_vector(15 DOWNTO 0);
-signal Write_Address_OUT: std_logic_vector(2 DOWNTO 0);
-signal Write_Address_OUT_M_WB: std_logic_vector(2 DOWNTO 0);
-signal WriteAddress_Out_E_M: std_logic_vector(2 DOWNTO 0);
-signal WRITE_ADDRESS_OUT_D_E: std_logic_vector(2 DOWNTO 0);
-signal Write_data_out_E_M: std_logic_vector(31 DOWNTO 0);
+signal Swaped_INST: std_logic_vector(15 DOWNTO 0):= (others => '0');
+signal Write_Address_OUT: std_logic_vector(2 DOWNTO 0):= (others => '0');
+signal Write_Address_OUT_M_WB: std_logic_vector(2 DOWNTO 0):= (others => '0');
+signal WriteAddress_Out_E_M: std_logic_vector(2 DOWNTO 0):= (others => '0');
+signal WRITE_ADDRESS_OUT_D_E: std_logic_vector(2 DOWNTO 0):= (others => '0');
+signal Write_data_out_E_M: std_logic_vector(31 DOWNTO 0):= (others => '0');
 signal Write_data_out_D_E : std_logic_vector(31 downto 0) := (others => '0'); -- Data to be written to memory
 signal callSig_out : std_logic := '0'; -- Subroutine call signal (generated)
-signal callSig_out_D_E: std_logic;
-signal callSig_out_E_M: std_logic;
+signal callSig_out_D_E: std_logic:= '0';
+signal callSig_out_E_M: std_logic:= '0';
 signal call_Sig_out_D_E : std_logic := '0'; -- Subroutine call signal (generated)
 
 
 
 BEGIN
-u0: FETCH PORT MAP(CLK,RST,INTERRUPT_SIG,RESET_SIG,CALL_SIG_D,RET_SIG_M,RTI_SIG_M,BRANCH_SIG_M, BRANCH_Z_SIG_M,STALL,CALL_INSTRUCTION,MEM_OUTPUT,BRANCH_ADDRESS_M,PC_SAVED,FETECHED_INSTRUCTION,Swaped_INST,EXTENDED_IMM);
+u0: FETCH PORT MAP(CLK,RST,INTERRUPT_SIG,RST,CALL_SIG_D,RET_SIG_M,RTI_SIG_M,BRANCH_SIG_M, BRANCH_Z_SIG_M,STALL,CALL_INSTRUCTION,MEM_OUTPUT,BRANCH_ADDRESS_M,PC_SAVED,FETECHED_INSTRUCTION,Swaped_INST,EXTENDED_IMM);
 u1: F_D PORT MAP(CLK, FLUSH_SIG_M, STALL, FETECHED_INSTRUCTION, PC_SAVED, IN_PORT, INTERRUPT_SIG, PREV_STALL_OUT, PC_OUT_F_D, OP_CODE, SRC1, SRC2, DEST, IN_PORT_OUT_F_D, INTERRUPT_SIG_OUT_F_D);
 u2: DecodeUnit PORT MAP(CLK, RST, OP_CODE, SRC1, SRC2, RegWrite_M_WB, Out2, Write_Address_OUT_M_WB, ReadData1, ReadData2, MemtoReg, ALU_Src, RegWrite, MemWrite, Stall, Swap, Branch_SIG_OUT, BRANCH_Z_SIG_OUT, Push, Pop, Insig, Protect, Free, callSig_out, RET_SIG_out,RTI_SIG_OUT, Swaped_INST, OUT_PORT);
 u3: D_E PORT MAP(CLK, FLUSH_SIG_M, MemToReg, RegWrite, MemWrite, Branch_SIG_OUT, BRANCH_Z_SIG_OUT, PUSH, POP, In_SIG, Protect, Free, ALU_SRC, PC_OUT_F_D, ReadData1, ReadData2, IMM_VALUE, IN_PORT_OUT_F_D, WRITE_ADDRESS_OUT, OP_CODE, callSig_out, RET_SIG_out, RTI_SIG_OUT, INTERRUPT_SIG_out_F_D,MemToReg_OUT_D_E,RegWrite_OUT_D_E,MemWrite_OUT_D_E,Branch_Sig_OUT_D_E,Branch_Z_Sig_OUT_D_E,PUSH_OUT_D_E,POP_OUT_D_E,In_SIG_OUT_D_E,Protect_OUT_D_E,Free_OUT_D_E,ALU_SRC_OUT_D_E, PC_OUT_D_E, ReadData1_OUT_D_E, ReadData2_OUT_D_E, IMM_VALUE_OUT_D_E, IN_PORT_OUT_D_E, WRITE_ADDRESS_OUT_D_E, OP_CODE_D_E, callSig_out_D_E, RET_SIG_out_D_E, RTI_SIG_out_D_E, INTERRUPT_SIG_out_D_E);

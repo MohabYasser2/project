@@ -36,9 +36,14 @@ Signal control :std_logic_vector(16 DOWNTO 0) := (OTHERS => '0');
 Begin
 
 
-process(clk) IS
-BEGIN
+process(clk,rst) IS
 
+BEGIN
+IF rst='1' THEN
+	control<="00000000000000000";
+	Swap_INST<="0000000000000000";
+ELSE
+if Falling_EDGE(clk) THEN
 	IF(opcode="00000") THEN --NoOp
 
 	control<="00000000000000000";
@@ -142,7 +147,8 @@ END IF;
 IF(opcode="11101") THEN --RESET
     control<="00000000000000000";
 END IF;
-
+END IF;
+END IF;
 
 END PROCESS;
 RTI_SIG<=control(16);

@@ -20,7 +20,7 @@ END ENTITY;
 
 ARCHITECTURE ArchD_1 of ALU is
 
-SIGNAL External_F: STD_LOGIC_VECTOR (32 downto 0);
+SIGNAL External_F: STD_LOGIC_VECTOR (32 downto 0):= (OTHERS => '0');
 SIGNAL FLAGS: STD_LOGIC_VECTOR (3 downto 0) := (OTHERS => '0');
 BEGIN
 
