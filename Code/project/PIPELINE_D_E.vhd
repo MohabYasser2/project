@@ -14,6 +14,7 @@ ENTITY D_E IS
 		RET_SIG: IN STD_LOGIC;
 		RTI_SIG: IN STD_LOGIC;
 		INTERRUPT_SIG: IN STD_LOGIC;
+		SWAPPING_SIG: IN STD_LOGIC;
 
 		MemToReg_OUT,RegWrite_OUT,MemWrite_OUT,Branch_Sig_OUT,Branch_Z_Sig_OUT,PUSH_OUT,POP_OUT,In_SIG_OUT,Protect_OUT,Free_OUT,ALU_SRC_OUT: OUT STD_LOGIC;
 		PC_OUT,READ_DATA1_OUT,READ_DATA2_OUT,IMM_VALUE_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
@@ -30,7 +31,8 @@ ENTITY D_E IS
 		lastpredout:out STD_LOGIC
 
 		
-
+;
+		SWAPPING_SIG_OUT: OUT STD_LOGIC
 
 
 
@@ -65,7 +67,7 @@ BEGIN
 			RET_SIG_OUT<= '0';
 			INTERRUPT_SIG_OUT<= '0';
 			RTI_SIG_OUT<= '0';
-			
+			SWAPPING_SIG_OUT<= '0';
 			PC_OUT <=(OTHERS => '0');
 			READ_DATA1_OUT <=(OTHERS => '0');
 			READ_DATA2_OUT <=(OTHERS => '0');
@@ -101,6 +103,7 @@ BEGIN
 			ReadReg1out<=ReadReg1in;
 			ReadReg2out<=ReadReg2in;
 			lastpredout<=lastpredin;
+			SWAPPING_SIG_OUT<=SWAPPING_SIG;
 			END IF; 
 
 		END IF;

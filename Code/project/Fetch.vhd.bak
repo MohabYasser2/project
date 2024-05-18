@@ -5,10 +5,12 @@ USE IEEE.numeric_std.all;
 ENTITY Fetch IS
 
 PORT (
-CLK,RST,INTERRUPT_SIG,RESET_SIG,CALL_SIG,RET_SIG,RTI_SIG:IN std_logic;
-Branch0: IN std_logic := '0';
-BranchU: IN std_logic := '0';
+CLK,RST,INTERRUPT_SIG,RESET_SIG,CALL_SIG,RET_SIG,RTI_SIG,INTERRUPT_SIG,RESET_SIG,CALL_SIG,RET_SIG,RTI_SIG:IN std_logic;
+Branch0: IN std_logic := '0' := '0';
+BranchU: IN std_logic := '0' := '0';
 Stall: IN std_logic;
+CALL_INSTRUCTION: IN std_logic_vector(31 DOWNTO 0);
+RET_INSTRUCTION: IN std_logic_vector(31 DOWNTO 0);
 CALL_INSTRUCTION: IN std_logic_vector(31 DOWNTO 0);
 RET_INSTRUCTION: IN std_logic_vector(31 DOWNTO 0);
 BranchAddress:IN std_logic_vector(31 DOWNTO 0);
@@ -16,6 +18,7 @@ PC_SAVED: OUT std_logic_vector(31 DOWNTO 0);
 FetchedInstruction : OUT std_logic_vector(15 DOWNTO 0);
 Swap_INST : IN std_logic_vector(15 DOWNTO 0);
 EXTENDED_IMM: OUT std_logic_vector(31 DOWNTO 0);
+EXCEPTION_O : OUT STD_LOGIC;
 PcBeforepred:in std_logic_vector(31 DOWNTO 0);
 LastPred,wrongprediction:in std_logic;
 
@@ -42,7 +45,9 @@ PORT (
 CLK, RST: IN std_logic;
 PC : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 DATAOUT : OUT std_logic_vector(15 DOWNTO 0);
-RESET_VALUE,INT_VALUE: OUT std_logic_vector(31 DOWNTO 0)
+RESET_VALUE,INT_VALUE: OUT std_logic_vector(31 DOWNTO 0);
+RESET_VALUE,INT_VALUE: OUT std_logic_vector(31 DOWNTO 0);
+EXCEPTION_OUT : OUT STD_LOGIC
 );
 
 END Component;
@@ -68,6 +73,8 @@ SIGNAL MUXOUT : STD_LOGIC_VECTOR(31 downto 0) :=(OTHERS => '0');
 SIGNAL MUXOUT1 : STD_LOGIC_VECTOR(31 downto 0) :=(OTHERS => '0');
 SIGNAL MUXOUT2 : STD_LOGIC_VECTOR(31 downto 0) :=(OTHERS => '0');
 SIGNAL MUXOUT3 : STD_LOGIC_VECTOR(31 downto 0) :=(OTHERS => '0');
+SIGNAL MUXOUT1 : STD_LOGIC_VECTOR(31 downto 0) :=(OTHERS => '0');
+SIGNAL MUXOUT2 : STD_LOGIC_VECTOR(31 downto 0) :=(OTHERS => '0');
 SIGNAL PC_OUT : STD_LOGIC_VECTOR(31 downto 0) := (OTHERS => '0');
 SIGNAL A : STD_LOGIC := '0';
 SIGNAL B : STD_LOGIC := '0';
@@ -98,5 +105,7 @@ U3:Mux2x1 GENERIC MAP (16) PORT MAP(INST,Swap_INST,STALL,FetchedInstruction);
 U4:Mux2x1 GENERIC MAP (32) PORT MAP(MUXOUT1,CALL_INSTRUCTION,CALL_SIG,MUXOUT2);
 U5:Mux2x1 GENERIC MAP (32) PORT MAP(MUXOUT2,RET_INSTRUCTION,RET_SIG ,MUXOUT3);
 Lastpredout<=Lastpred
+U4:Mux2x1 GENERIC MAP (32) PORT MAP(MUXOUT,CALL_INSTRUCTION,CALL_SIG,MUXOUT1);
+U5:Mux2x1 GENERIC MAP (32) PORT MAP(MUXOUT1,RET_INSTRUCTION,RET_SIG ,MUXOUT2);
 
 END ARCHITECTURE;

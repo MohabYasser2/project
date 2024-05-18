@@ -1,7 +1,7 @@
 restart -f
-mem load -i {C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/Project/Code/project/Test_Cases/MOHAB_TEST.mem} /main_processor/u0/U2/INSTRUCTION_CACHE
 force -freeze sim:/main_processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/main_processor/RST 1 0
+mem load -i {C:/Users/mohab/Desktop/Uni/Courses/Year 3 - 2nd term/Computer Arch/Project/Code/project/Test_Cases/MOHAB_TEST.mem} /main_processor/u0/U2/INSTRUCTION_CACHE
 run
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /main_processor/u6/U1
@@ -300,3 +300,23 @@ run
 #    Time: 1700 ps  Iteration: 0  Instance: /main_processor/u6/U1
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 1700 ps  Iteration: 0  Instance: /main_processor/u6/U1
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1750 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1750 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1750 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 1750 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1750 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1750 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1800 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1800 ps  Iteration: 0  Instance: /main_processor/u6/U1
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1800 ps  Iteration: 0  Instance: /main_processor/u6/U1
+

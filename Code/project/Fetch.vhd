@@ -16,6 +16,7 @@ PC_SAVED: OUT std_logic_vector(31 DOWNTO 0);
 FetchedInstruction : OUT std_logic_vector(15 DOWNTO 0);
 Swap_INST : IN std_logic_vector(15 DOWNTO 0);
 EXTENDED_IMM: OUT std_logic_vector(31 DOWNTO 0);
+EXCEPTION_O : OUT STD_LOGIC;
 PcBeforepred:in std_logic_vector(31 DOWNTO 0);
 LastPred,wrongprediction:in std_logic;
 
@@ -42,7 +43,8 @@ PORT (
 CLK, RST: IN std_logic;
 PC : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 DATAOUT : OUT std_logic_vector(15 DOWNTO 0);
-RESET_VALUE,INT_VALUE: OUT std_logic_vector(31 DOWNTO 0)
+RESET_VALUE,INT_VALUE: OUT std_logic_vector(31 DOWNTO 0);
+EXCEPTION_OUT : OUT STD_LOGIC
 );
 
 END Component;
@@ -91,7 +93,7 @@ mux1selector<=LastPred&wrongprediction;
 EXTENDED_IMM <= INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) &INST(15) & INST;
 U0: PC PORT MAP(CLK,RESET_SIG,STALL,INTERRUPT_SIG,MUXOUT3,RESET_VAL,INT_VAL,PC_OUT);
 U1:Mux4x1 GENERIC MAP (32) PORT MAP(AddOutput,BranchAddress,AddOutput,PcBeforepred,mux1selector,MUXOUT1);
-U2:INSTRUCTION_CACHE PORT MAP(CLK,RST,PC_OUT,INST,RESET_VAL,INT_VAL);
+U2:INSTRUCTION_CACHE PORT MAP(CLK,RST,PC_OUT,INST,RESET_VAL,INT_VAL,EXCEPTION_O);
 
 U3:Mux2x1 GENERIC MAP (16) PORT MAP(INST,Swap_INST,STALL,FetchedInstruction);
 
