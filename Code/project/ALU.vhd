@@ -43,7 +43,7 @@ Case OP_CODE IS
 	--XXX WHEN  "00000",
 --NOT
 	WHEN  "00001" =>
-	Internal_F := NOT (A & A(31)) ;
+	Internal_F := NOT ( A(31) & A ) ;
 	if Internal_F = "000000000000000000000000000000000"
 	then
 	FLAGS(0) <= '1';
@@ -56,7 +56,7 @@ Case OP_CODE IS
 --NEG
 	WHEN  "00010" =>
 	
-       	Internal_F := STD_LOGIC_VECTOR( 0-(SIGNED(A) & A(31)));
+       	Internal_F := STD_LOGIC_VECTOR( 0 - (A(31) & SIGNED(A)));
     
 	
 	if Internal_F = "000000000000000000000000000000000"
@@ -70,7 +70,7 @@ Case OP_CODE IS
 --INC
 	WHEN  "00011" =>
 	
-       	Internal_F := STD_LOGIC_VECTOR( (SIGNED(A) & A(31))  + 1);
+       	Internal_F := STD_LOGIC_VECTOR( (A(31) & SIGNED(A)  )  + 1);
     
 	
 	if Internal_F = "000000000000000000000000000000000"
@@ -89,7 +89,7 @@ Case OP_CODE IS
 --DECRMENT TODO
 	WHEN  "00100" =>
 	
-       	Internal_F := STD_LOGIC_VECTOR( (SIGNED(A) & A(31))  - 1);
+       	Internal_F := STD_LOGIC_VECTOR( (A(31) & SIGNED(A)  )  - 1);
     
 	
 	if Internal_F = "000000000000000000000000000000000"
@@ -120,7 +120,7 @@ Case OP_CODE IS
 	Internal_F := A(31) & A  ;
 --ADD
 	 WHEN  "01001" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & SIGNED(A)) + (B(31) & SIGNED(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -147,7 +147,7 @@ Case OP_CODE IS
 
 --ADDI
 	 WHEN  "01010" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & SIGNED(A)) + (B(31) & SIGNED(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -174,7 +174,7 @@ Case OP_CODE IS
 
 --SUB
 	 WHEN  "01011" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) - (signed(B) & B(31))); 
+	Internal_F := STD_LOGIC_VECTOR((A(31) & SIGNED(A)) - (B(31) & SIGNED(B))); 
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -201,7 +201,7 @@ Case OP_CODE IS
 
 --SUBI
 	 WHEN  "01100" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) - (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & SIGNED(A)) - (B(31) & SIGNED(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -228,7 +228,7 @@ Case OP_CODE IS
 
 --AND
 	 WHEN  "01101" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) AND (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & signed(A)) AND (B(31) & signed(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -240,7 +240,7 @@ Case OP_CODE IS
 	FLAGS(1) <= Internal_F(31);
 --OR
 	 WHEN  "01110" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) OR (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & signed(A)) OR (B(31) & signed(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -253,7 +253,7 @@ Case OP_CODE IS
 	
 --XOR
 	 WHEN  "01111" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) XOR (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & signed(A)) XOR (B(31) & signed(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -265,7 +265,7 @@ Case OP_CODE IS
 	FLAGS(1) <= Internal_F(31);
 --CMP TODO (flags)
 	WHEN  "10000" =>
-	Temp_F :=  STD_LOGIC_VECTOR( ( SIGNED(A) & A(31)) - (SIGNED(B) & B(31) ));
+	Temp_F :=  STD_LOGIC_VECTOR( ( A(31) & signed(A)) - (B(31) & signed(B)));
 	
 	if Temp_F = "000000000000000000000000000000000"
 	then
@@ -301,7 +301,7 @@ Case OP_CODE IS
 	Internal_F := B(31) & B ;
 --LDD
 	WHEN  "10100" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & signed(A)) + (B(31) & signed(B)));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -325,7 +325,7 @@ Case OP_CODE IS
 	--here we need writedata into memory to be Rsrc1 instead of Rscrc2 like normal (assembler?)
 	--Alu adds A(RSRC2) and B(immediate value)
 	WHEN  "10101"=>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((A(31) & signed(A)) + (B(31) & signed(B) ));
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
