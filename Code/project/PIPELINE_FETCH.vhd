@@ -13,7 +13,9 @@ ENTITY F_D IS
 		OP_CODE: OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
 		SRC1, SRC2, DEST: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-		INTERRUPT_SIG_OUT: OUT STD_LOGIC
+		INTERRUPT_SIG_OUT: OUT STD_LOGIC;
+		lastpredin:in std_logic;
+		lastpredOut:out std_logic
 
 
 
@@ -40,12 +42,14 @@ BEGIN
 			IN_PORT_OUT <= (OTHERS => '0');
 			PREV_STALL_OUT <= '0';
 			INTERRUPT_SIG_OUT <= '0';
+			lastpredOut<='0';
 			else
 			
 			OP_CODE <= INST(15 DOWNTO 11);
 			SRC1 <= INST(10 DOWNTO 8); 
 			SRC2 <= INST(7 DOWNTO 5);
 			DEST <= INST(4 DOWNTO 2);
+			lastpredOut<=lastpredin;
 
 				
 			PREV_STALL_OUT <= PREV_STALL_IN;
