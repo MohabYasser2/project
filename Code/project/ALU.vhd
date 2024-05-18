@@ -345,23 +345,30 @@ Case OP_CODE IS
     end if;
 	
 --PROGECT
-	--XXX WHEN  "10110",
+WHEN  "10110" =>
+Internal_F := A(31) & A  ;
 --FREE
-	--XXX WHEN  "10111",
+WHEN  "10111" =>
+Internal_F := A(31) & A  ;
 --JZ
-	--XXX WHEN  "11000",
+WHEN  "11000" =>
+Internal_F := A(31) & A  ;
 --JMP
-	--XXX WHEN  "11001",
+	WHEN  "11001" =>
+	Internal_F := A(31) & A  ;
 --CALL
-	--XXX WHEN  "11010",
+WHEN  "11010" =>
+Internal_F := A(31) & A  ;
 --RET
-	--XXX WHEN  "11011",
+WHEN  "11011" =>
+Internal_F := A(31) & A  ;
 --RTI
-	--XXX WHEN  "11100",
+WHEN  "11100" =>
+Internal_F := A(31) & A  ;
 --RESET
-	--XXX WHEN  "11101",
+
 --INTERRUPT TODO
-	-- A WHEN  others;
+
 WHEN others =>
 	null;
 end case;
