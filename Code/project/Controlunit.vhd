@@ -135,12 +135,7 @@ END IF;
 IF(opcode="10111") THEN --FREE
     control<="00000000000000100";
 END IF;
-IF(opcode="11000") THEN --JZ
-    control<="00000000000000000";
-END IF;
-IF(opcode="11001") THEN --JMP
-    control<="00000000000000000";
-END IF;
+
 IF(opcode="11010") THEN --CALL
     control<="00001000000000010";
 END IF;
@@ -159,7 +154,12 @@ END IF;
 IF(opcode="00101") THEN --OUT
     control<="00000000000010000";
 END IF;
-
+IF(opcode="11000") THEN --JZ
+    control<="00000000100000000";
+END IF;
+IF(opcode="11001") THEN --JMP
+    control<="00000001000000000";
+END IF;
 END IF;
 END IF;
 
