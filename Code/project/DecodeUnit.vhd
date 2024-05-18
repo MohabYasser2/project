@@ -5,7 +5,7 @@ USE IEEE.numeric_std.all;
 ENTITY DecodeUnit IS
 
 PORT (
-CLK,RST:IN std_logic;
+CLK,RST,PERV_STALL:IN std_logic;
 opcode: IN std_logic_vector(4 DOWNTO 0);
 ReadReg1: IN std_logic_vector(2 DOWNTO 0);
 ReadReg2: IN std_logic_vector(2 DOWNTO 0);
@@ -35,7 +35,7 @@ Architecture Arch of DecodeUnit is
     COMPONENT controlunit IS
 
     PORT (
-CLK, RST : IN std_logic;
+CLK, RST,PERV_STALL : IN std_logic;
 OPCODE : IN std_logic_vector(4 DOWNTO 0);
 OGInstruction:IN  std_logic_vector(15 downto 0);
 Src,DST:IN std_logic_vector(2 downto 0);
@@ -81,7 +81,7 @@ Begin
 
 TEMPOG<=OPCODE &ReadReg1&ReadReg2&WriteAdd&"00";
 
-u0:Controlunit PORT MAP(CLK,RST,OPCODE,TEMPOG,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,callSig,retSig,Swaped_INST,RTI_SIG);
+u0:Controlunit PORT MAP(CLK,RST,PERV_STALL,OPCODE,TEMPOG,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,callSig,retSig,Swaped_INST,RTI_SIG);
 u1:REGISTERFILE32 PORT MAP(CLK,RST,RegWRPipeline,WriteReg,ReadReg1,ReadReg2,WriteAdd,TEMP,ReadData2);
 
 OUTSIG2 <=OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG & OUTSIG & OUTSIG ;

@@ -5,7 +5,7 @@ USE IEEE.numeric_std.all;
 ENTITY controlunit IS
 
 PORT (
-CLK, RST : IN std_logic;
+CLK, RST,PERV_STALL : IN std_logic;
 OPCODE : IN std_logic_vector(4 DOWNTO 0);
 OGInstruction:IN  std_logic_vector(15 downto 0);
 Src,DST:IN std_logic_vector(2 downto 0);
@@ -87,8 +87,12 @@ END IF;
 IF(opcode="00011") THEN --INC
     control<="01010000000000000";
 END IF;
-IF(opcode="01000") THEN --SWAP
+IF opcode="01000" AND PERV_STALL = '0' THEN --SWAP,1
     control<="01010110000000000";
+Swap_INST<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) &OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
+END IF;
+IF opcode="01000" AND PERV_STALL = '0' THEN --SWAP,2
+    control<="01010000000000000";
 Swap_INST<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) &OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
 END IF;
 IF(opcode="01001") THEN --ADD
