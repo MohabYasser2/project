@@ -1,0 +1,13 @@
+//memory data file (do not edit the following line - required for mem load use)
+//instance=/instruction_cache/RAM
+//format=mti addressradix=d dataradix=b version=1.0 wordsperline=1
+ 
+ 0: 0000000010100000
+ 1: 0000000000000000
+ 2: 0000000000000000
+ 3: 0000000000000000
+160: 0000100100100100
+161: 0000000000000000
+162: 0000000000000000
+163: 0000000000000000
+164: 0000000000000000
