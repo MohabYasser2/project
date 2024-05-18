@@ -6,9 +6,9 @@ ENTITY ForwardingUnit IS
     PORT (
         clk : IN STD_LOGIC;
         Src1, Src2, ExDst, MemDst : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
-        ExResultMe, MemResult : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
         MemtoRegE, MemtoRegM : IN STD_LOGIC;
-        ForwardedData1, ForwardedData2 : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+        ExResultMe, MemResult : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+        ForwardedData1 : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
         Selector1, Selector2 : OUT STD_LOGIC
     );
 END ForwardingUnit;
@@ -36,14 +36,14 @@ BEGIN
 
             -- Forwarding for Src2
             IF Src2 = MemDst AND MemtoRegM = '0' THEN
-                ForwardedData2 <= MemResult;
+                ForwardedData1 <= MemResult;
                 Selector2 <= '1';
             ELSIF Src2 = ExDst AND MemtoRegE = '0' THEN
-                ForwardedData2 <= ExResultMe;
+                ForwardedData1 <= ExResultMe;
                 Selector2 <= '1';
             ELSE
                 -- Default case if no forwarding is needed
-                ForwardedData2 <= (others => '0');
+                ForwardedData1 <= (others => '0');
             END IF;
         END IF;
     END PROCESS;
