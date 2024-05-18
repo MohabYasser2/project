@@ -8,8 +8,8 @@ PORT (
 CLK, RST : IN std_logic;
 PC : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 DATAOUT : OUT std_logic_vector(15 DOWNTO 0);
-RESET_VALUE , INT_VALUE: OUT std_logic_vector(31 DOWNTO 0)
-
+RESET_VALUE , INT_VALUE: OUT std_logic_vector(31 DOWNTO 0);
+EXCEPTION_OUT : OUT STD_LOGIC 
 );
 
 END ENTITY;
@@ -24,10 +24,15 @@ BEGIN
 PROCESS(CLK) IS
 BEGIN
 
+
 IF FALLING_EDGE(CLK) THEN
+IF to_integer(unsigned(PC))>4095 OR to_integer(unsigned(PC)) <0 THEN
+EXCEPTION_OUT<= '1';
+ELSE
+EXCEPTION_OUT<= '0';
 DATA <=INSTRUCTION_CACHE(to_integer(unsigned(PC)));
 END IF;
-
+END IF;
 END PROCESS;
 
 DATAOUT <= DATA;
