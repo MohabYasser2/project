@@ -60,12 +60,12 @@ ELSIF falling_edge(CLK) THEN
     RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0))) + 1 ) <='0'&  WriteData(15 DOWNTO 0);
     END IF;
 
-    IF MEMTOREG ='1' THEN
+    IF MEMTOREG ='1'  OR unsigned(ADDRESS(11 DOWNTO 0 )) = "111111111111" THEN
     
     TEMP_DATAOUT <= "00000000000000000000000000000000";
 
     else
-
+        
     TEMP_DATAOUT <=RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0 ))))(15 downto 0) & RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0) )) + 1)(15 downto 0) ;
     END IF;
     END IF;
