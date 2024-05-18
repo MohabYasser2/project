@@ -24,7 +24,8 @@ Push,Pop,Insig: OUT std_logic;
 Protect,Free: OUT std_logic;
 callSig,retSig,RTI_SIG: OUT STD_LOGIC;
 Swaped_INST :OUT std_logic_vector(15 downto 0);
-OUT_PORT:OUT std_logic_vector(31 DOWNTO 0)
+OUT_PORT:OUT std_logic_vector(31 DOWNTO 0);
+ReadReg1out,ReadReg2out:OUT std_logic_vector(2 downto 0)
 
 
 );
@@ -87,7 +88,8 @@ u1:REGISTERFILE32 PORT MAP(CLK,RST,RegWRPipeline,WriteReg,ReadReg1,ReadReg2,Writ
 
 OUTSIG2 <=OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG &OUTSIG & OUTSIG & OUTSIG & OUTSIG ;
 OUT_PORT <= temp AND OUTSIG2;
-
+ReadReg1out<=ReadReg1;
+ReadReg2out<=ReadReg2;
 readdata1 <= temp;
 RegWrite<=RegWr;
 End Architecture; 
