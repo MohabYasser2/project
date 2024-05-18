@@ -27,6 +27,11 @@ ENTITY D_E IS
 		INTERRUPT_SIG_OUT: OUT STD_LOGIC;
 		ReadReg1in,ReadReg2in:IN std_logic_vector(2 downto 0);
 		ReadReg1out,ReadReg2out:OUT std_logic_vector(2 downto 0);
+		lastpredin:in STD_LOGIC;
+		lastpredout:out STD_LOGIC
+
+		
+;
 		SWAPPING_SIG_OUT: OUT STD_LOGIC
 
 
@@ -70,7 +75,7 @@ BEGIN
 			IN_PORT_OUT <=(OTHERS => '0');
 			WRITE_ADDRESS_OUT <=(OTHERS => '0');
 			OP_CODE_D_E <=(OTHERS => '0');
-
+			lastpredout<='0';
 			ELSE
 			
 			MemToReg_OUT <= MemToReg ;
@@ -97,6 +102,7 @@ BEGIN
 			INTERRUPT_SIG_OUT <= INTERRUPT_SIG;
 			ReadReg1out<=ReadReg1in;
 			ReadReg2out<=ReadReg2in;
+			lastpredout<=lastpredin;
 			SWAPPING_SIG_OUT<=SWAPPING_SIG;
 			END IF; 
 
