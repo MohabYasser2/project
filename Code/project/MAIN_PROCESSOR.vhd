@@ -33,7 +33,7 @@ PC_SAVED: OUT std_logic_vector(31 DOWNTO 0);
 FetchedInstruction : OUT std_logic_vector(15 DOWNTO 0);
 Swap_INST : IN std_logic_vector(15 DOWNTO 0);
 EXTENDED_IMM: OUT std_logic_vector(31 DOWNTO 0);
-EXEP3 : OUT STD_LOGIC
+EXCEPTION_O : OUT STD_LOGIC
 
 
 );
@@ -141,7 +141,7 @@ FLAGS: OUT std_logic_vector(3 downto 0);
 PREV_FLAGS: OUT std_logic_vector(3 downto 0);
 ForwardedData:IN std_logic_vector(31 DOWNTO 0);
 Forwardselector1,Forwardselector2:IN std_logic;
-EXEP2 : OUT STD_LOGIC
+EXCEPTION_O : OUT STD_LOGIC
 );
 
 END COMPONENT;
@@ -226,7 +226,7 @@ BRANCH_SIG : OUT std_logic;
 BRANCH_Z_SIG : OUT std_logic;
 FLUSH_SIG: OUT STD_LOGIC;
 Flags_out: OUT std_logic_vector(3 DOWNTO 0);
-EXEP1 : OUT STD_LOGIC
+EXCEPTION_O : OUT STD_LOGIC
 
 );
 

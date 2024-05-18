@@ -56,7 +56,7 @@ Case OP_CODE IS
 --NEG
 	WHEN  "00010" =>
 	
-       	Internal_F := STD_LOGIC_VECTOR( 0 - (A(31) & SIGNED(A)));
+       	Internal_F := STD_LOGIC_VECTOR( NOT( A(31) & SIGNED(A) )+1);
     
 	
 	if Internal_F = "000000000000000000000000000000000"

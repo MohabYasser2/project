@@ -14,45 +14,41 @@ ENTITY ForwardingUnit IS
 END ForwardingUnit;
 
 ARCHITECTURE Forwarding OF ForwardingUnit IS
-signal S1,S2 : STD_LOGIC := '0';
+
 begin
     PROCESS (clk)
-    
+    VARIABLE S1,S2 : STD_LOGIC := '0';
     variable ForwardedData : STD_LOGIC_VECTOR (31 DOWNTO 0) := (OTHERS => '0');
     BEGIN
         IF RISING_EDGE(clk) THEN
             -- Default selectors to '0
-
+            S1 := '0';
+            S2 := '0';
+            ForwardedData := (others => '0');
             -- Forwarding for Src1
             IF Src1 = MemDst AND MemtoRegM = '0' AND SWAPPING2 = '0' THEN
                 ForwardedData := MemResult;
-                S1 <= '1';
-            ELSIF Src1 = ExDst AND MemtoRegE = '1' AND SWAPPING1 = '0'THEN
+                S1 := '1';
+            END if;
+            IF Src1 = ExDst AND MemtoRegE = '1' AND SWAPPING1 = '0'THEN
                 ForwardedData := ExResultMe;
-                S1 <= '1';
-            ELSE
-                -- Default case if no forwarding is needed
-                S1 <= '0';
-                ForwardedData := (others => '0');
-            END IF;
-
-            -- Forwarding for Src2
-            IF Src2 = MemDst AND MemtoRegM = '0'AND SWAPPING2 = '0' THEN
+                S1 := '1';
+            END IF; 
+            if Src2 = MemDst AND MemtoRegM = '0'AND SWAPPING2 = '0' THEN
                 ForwardedData := MemResult;
-                S2 <= '1';
-            ELSIF Src2 = ExDst AND MemtoRegE = '1' AND SWAPPING1 = '0'THEN
+                S2 := '1';
+                END if;
+            IF Src2 = ExDst AND MemtoRegE = '1' AND SWAPPING1 = '0'THEN
                 ForwardedData := ExResultMe;
-                S2 <= '1';
-            ELSE
-                -- Default case if no forwarding is needed
-                S2 <= '0';
-                ForwardedData := (others => '0');
+                S2 := '1';
+         
             END IF;
-       
+            
+            Selector1 <= S1;
+            Selector2 <= S2;
             ForwardedData1 <= ForwardedData;
 
         END IF;
     END PROCESS;
-    Selector1 <= S1;
-    Selector2 <= S2;
+    
 END Forwarding;
