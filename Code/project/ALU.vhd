@@ -75,9 +75,12 @@ Case OP_CODE IS
 	if Internal_F = "000000000000000000000000000000000"
 	then
 	FLAGS(0) <= '1';
+	FLAGS(2) <= '1';    --Carry
 	else
 	FLAGS(0) <= '0';
+	FLAGS(2) <= '0';
 	end if;	
+
 
 	FLAGS(1) <= Internal_F(31);
 
@@ -93,6 +96,13 @@ Case OP_CODE IS
 	FLAGS(0) <= '1';
 	else
 	FLAGS(0) <= '0';
+	end if;	
+
+	if Internal_F = "111111111111111111111111111111111"   --Carry
+	then
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
 	end if;	
 
 	FLAGS(1) <= Internal_F(31);
@@ -125,6 +135,13 @@ Case OP_CODE IS
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
     end if;
+
+	if Internal_F(32) = '1' THEN  --Carry
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
+
 --ADDI
 	 WHEN  "01010" =>
 	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
@@ -143,9 +160,16 @@ Case OP_CODE IS
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
     end if;
+
+	if Internal_F(32) = '1' THEN --Carry
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
+
 --SUB
 	 WHEN  "01011" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) - (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) - (signed(B) & B(31))); 
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -161,6 +185,12 @@ Case OP_CODE IS
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
     end if;
+
+	if (signed(A) & A(31)) - (signed(B) & B(31)) >0 THEN
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
 
 --SUBI
 	 WHEN  "01100" =>
@@ -180,6 +210,12 @@ Case OP_CODE IS
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
     end if;
+
+	if (signed(A) & A(31)) - (signed(B) & B(31)) >0 THEN
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
 
 --AND
 	 WHEN  "01101" =>
