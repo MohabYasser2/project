@@ -28,6 +28,7 @@ Process (CLK,RST,OP_CODE,A,B) IS
 
 VARIABLE Internal_F: STD_LOGIC_VECTOR (32 downto 0);
 VARIABLE Temp_F: STD_LOGIC_VECTOR (32 downto 0);
+
 begin
 --OUTPUT
 IF RST = '1' THEN
@@ -319,8 +320,8 @@ end process;
 
 --FLAGS
 
-Flags_OUT <= Flags AND FLAGS_IN;
-F <= External_F(32 downto 1);
+Flags_OUT <= Flags ;
+F <= External_F(31 downto 0);
 
 
 

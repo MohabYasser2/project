@@ -147,6 +147,13 @@ END IF;
 IF(opcode="11101") THEN --RESET
     control<="00000000000000000";
 END IF;
+IF(opcode="00110") THEN --IN
+    control<="00010000000100000";
+END IF;
+IF(opcode="00101") THEN --OUT
+    control<="00000000000010000";
+END IF;
+
 END IF;
 END IF;
 
