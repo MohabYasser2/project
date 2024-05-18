@@ -5,7 +5,7 @@ USE IEEE.numeric_std.all;
 ENTITY DataMemory IS
 
 PORT (
-CLK,RST,WE,INTERRUPT_SIG,RTI_SIG: IN std_logic;
+CLK,RST,WE,INTERRUPT_SIG,RTI_SIG,MEMTOREG: IN std_logic;
 Protect_SIG,Free_SIG : IN std_logic;
 ADDRESS : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 WriteData: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -60,9 +60,12 @@ ELSIF falling_edge(CLK) THEN
     RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0))) + 1 ) <='0'&  WriteData(15 DOWNTO 0);
     END IF;
 
-    IF ADDRESS(11 DOWNTO 0) = "111111111111" THEN
-    TEMP_DATAOUT <= "0000000000000000";
+    IF MEMTOREG ='1' THEN
+    
+    TEMP_DATAOUT <= "00000000000000000000000000000000";
+
     else
+    
     TEMP_DATAOUT <=RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0 ))))(15 downto 0) & RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0) )) + 1)(15 downto 0) ;
     END IF;
     END IF;
