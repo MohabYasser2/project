@@ -23,7 +23,9 @@ ENTITY D_E IS
 		callSig_out: OUT STD_LOGIC;
 		RET_SIG_OUT: OUT STD_LOGIC;
 		RTI_SIG_OUT: OUT STD_LOGIC;
-		INTERRUPT_SIG_OUT: OUT STD_LOGIC
+		INTERRUPT_SIG_OUT: OUT STD_LOGIC;
+		ReadReg1in,ReadReg2in:IN std_logic_vector(2 downto 0);
+		ReadReg1out,ReadReg2out:OUT std_logic_vector(2 downto 0)
 
 
 
@@ -91,6 +93,8 @@ BEGIN
 			OP_CODE_D_E <=OP_CODE;
 			callSig_out <= callSig;
 			INTERRUPT_SIG_OUT <= INTERRUPT_SIG;
+			ReadReg1out<=ReadReg1in;
+			ReadReg2out<=ReadReg2in;
 			END IF; 
 
 		END IF;
