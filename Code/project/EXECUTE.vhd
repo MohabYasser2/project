@@ -15,7 +15,9 @@ RTI_SIG: IN std_logic;
 RTI_FLAGS: IN std_logic_vector(3 DOWNTO 0);
 ALU_OUTPUT: OUT  std_logic_vector(31 DOWNTO 0);
 FLAGS: OUT std_logic_vector(3 downto 0);
-PREV_FLAGS: OUT std_logic_vector(3 downto 0)
+PREV_FLAGS: OUT std_logic_vector(3 downto 0);
+ForwardedData:IN std_logic_vector(31 DOWNTO 0);
+Forwardselector1,Forwardselector2:IN std_logic
 );
 
 END ENTITY;
@@ -53,13 +55,18 @@ O : OUT STD_LOGIC_VECTOR (N-1 DOWNTO 0 ));
 END component;
 
 --Signals
-Signal MUXOUT : std_logic_vector(31 DOWNTO 0) := (others => '0');
+Signal MUX1OUT : std_logic_vector(31 DOWNTO 0) := (others => '0');
+Signal MUX2OUT : std_logic_vector(31 DOWNTO 0) := (others => '0');
+Signal MUX3OUT : std_logic_vector(31 DOWNTO 0) := (others => '0');
 signal temp_flags : std_logic_vector(3 downto 0) := (others => '0');
 signal temp_flags1 : std_logic_vector(3 downto 0) := (others => '0');
 BEGIN
+U3:Mux2x1 GENERIC MAP (32) PORT MAP(Read_data1,ForwardedData ,Forwardselector1,MUX1OUT);
 
-U0:Mux2x1 GENERIC MAP (32) PORT MAP(read_data2,imm_value ,ALU_SRC,MUXOUT);
-U1:ALU PORT MAP(CLK,RST,Read_data1,MUXOUT,OP_CODE,temp_flags,AlU_OUTPUT,temp_flags1);
+U4:Mux2x1 GENERIC MAP (32) PORT MAP(read_data2,ForwardedData ,Forwardselector2,MUX2OUT);
+
+U0:Mux2x1 GENERIC MAP (32) PORT MAP(MUX2OUT,imm_value ,ALU_SRC,MUX3OUT);
+U1:ALU PORT MAP(CLK,RST,MUX1OUT,MUX3OUT,OP_CODE,temp_flags,AlU_OUTPUT,temp_flags1);
 U2:CCR Port MAP(CLK,RST,RTI_SIG,temp_flags1,RTI_FLAGS,temp_flags);
 
 FLAGS <= temp_flags1;

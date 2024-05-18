@@ -7,8 +7,8 @@ ENTITY ForwardingUnit IS
         clk : IN STD_LOGIC;
         Src1, Src2, ExDst, MemDst : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
         ExResultMe, MemResult : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-        MemtoReg : IN STD_LOGIC;
-        ForwardedData : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+        MemtoRegE, MemtoRegM : IN STD_LOGIC;
+        ForwardedData1, ForwardedData2 : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
         Selector1, Selector2 : OUT STD_LOGIC
     );
 END ForwardingUnit;
@@ -18,40 +18,33 @@ BEGIN
     PROCESS (clk)
     BEGIN
         IF rising_edge(clk) THEN
-            IF MemtoReg = '0' THEN
-                -- Compare SRC1 to MemDst
-                IF Src1 = MemDst THEN
-                    ForwardedData <= MemResult;
-                    Selector1 <= '1';
-                ELSE
-                    Selector1 <= '0';
-                END IF;
+            -- Default selectors to '0'
+            Selector1 <= '0';
+            Selector2 <= '0';
 
-                -- Compare SRC2 to MemDst
-                IF Src2 = MemDst THEN
-                    ForwardedData <= MemResult;
-                    Selector2 <= '1';
-                ELSE
-                    Selector2 <= '0';
-                END IF;
-            ELSIF MemtoReg = '1' THEN
-                -- Compare SRC1 to ExDst
-                IF Src1 = ExDst THEN
-                    ForwardedData <= ExResultMe;
-                    Selector1 <= '1';
-                ELSE
-                    Selector1 <= '0';
-                END IF;
+            -- Forwarding for Src1
+            IF Src1 = MemDst AND MemtoRegM = '0' THEN
+                ForwardedData1 <= MemResult;
+                Selector1 <= '1';
+            ELSIF Src1 = ExDst AND MemtoRegE = '0' THEN
+                ForwardedData1 <= ExResultMe;
+                Selector1 <= '1';
+            ELSE
+                -- Default case if no forwarding is needed
+                ForwardedData1 <= (others => '0');
+            END IF;
 
-                -- Compare SRC2 to ExDst
-                IF Src2 = ExDst THEN
-                    ForwardedData <= ExResultMe;
-                    Selector2 <= '1';
-                ELSE
-                    Selector2 <= '0';
-                END IF;
+            -- Forwarding for Src2
+            IF Src2 = MemDst AND MemtoRegM = '0' THEN
+                ForwardedData2 <= MemResult;
+                Selector2 <= '1';
+            ELSIF Src2 = ExDst AND MemtoRegE = '0' THEN
+                ForwardedData2 <= ExResultMe;
+                Selector2 <= '1';
+            ELSE
+                -- Default case if no forwarding is needed
+                ForwardedData2 <= (others => '0');
             END IF;
         END IF;
     END PROCESS;
 END Forwarding;
-
