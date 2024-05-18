@@ -10,7 +10,8 @@ PORT(
 	OP_CODE : IN std_logic_vector (4 DOWNTO 0);
 	FLAGS_IN: IN STD_LOGIC_VECTOR (3 downto 0);
 	F: OUT std_logic_vector (31 downto 0);
-	FLAGS_OUT: OUT STD_LOGIC_VECTOR (3 downto 0)
+	FLAGS_OUT: OUT STD_LOGIC_VECTOR (3 downto 0);
+	EXCEPTION_OUT : OUT STD_LOGIC 
 );
 	
 	
@@ -75,9 +76,12 @@ Case OP_CODE IS
 	if Internal_F = "000000000000000000000000000000000"
 	then
 	FLAGS(0) <= '1';
+	FLAGS(2) <= '1';    --Carry
 	else
 	FLAGS(0) <= '0';
+	FLAGS(2) <= '0';
 	end if;	
+
 
 	FLAGS(1) <= Internal_F(31);
 
@@ -95,18 +99,25 @@ Case OP_CODE IS
 	FLAGS(0) <= '0';
 	end if;	
 
+	if Internal_F = "111111111111111111111111111111111"   --Carry
+	then
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
+
 	FLAGS(1) <= Internal_F(31);
 --OUT
 	--XXX WHEN  "00101",
 --IN
 	WHEN  "00110" =>
-	Internal_F := A & A(31);
+	Internal_F := A(31) & A;
 --MOV
 	WHEN  "00111" =>
-	Internal_F := A & A(31);
+	Internal_F := A(31) & A;
 --SWAP
 	WHEN  "01000" =>
-	Internal_F := A & A(31);
+	Internal_F := A(31) & A  ;
 --ADD
 	 WHEN  "01001" =>
 	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
@@ -122,9 +133,18 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '0' and Internal_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '1' and Internal_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
+
+	if Internal_F(32) = '1' THEN  --Carry
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
+
 --ADDI
 	 WHEN  "01010" =>
 	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
@@ -140,12 +160,21 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '0' and Internal_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '1' and Internal_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
+
+	if Internal_F(32) = '1' THEN --Carry
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
+
 --SUB
 	 WHEN  "01011" =>
-	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) - (signed(B) & B(31)));
+	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) - (signed(B) & B(31))); 
 	
 	if Internal_F = "000000000000000000000000000000000"
 	then
@@ -158,9 +187,17 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '0' and Internal_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '1' and Internal_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
+
+	if (signed(A) & A(31)) - (signed(B) & B(31)) >0 THEN
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
 
 --SUBI
 	 WHEN  "01100" =>
@@ -177,9 +214,17 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '0' and Internal_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '1' and Internal_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
+
+	if (signed(A) & A(31)) - (signed(B) & B(31)) >0 THEN
+	FLAGS(2) <= '1';
+	else
+	FLAGS(2) <= '0';
+	end if;	
 
 --AND
 	 WHEN  "01101" =>
@@ -240,8 +285,10 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '1' and Temp_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '0' and Temp_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
 	
 
@@ -251,7 +298,7 @@ Case OP_CODE IS
 	--XXX WHEN  "10010",
 --LDM
 	WHEN  "10011" =>
-	Internal_F := B & B(31);
+	Internal_F := B(31) & B ;
 --LDD
 	WHEN  "10100" =>
 	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
@@ -268,8 +315,10 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '0' and Internal_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '1' and Internal_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
 
 --STD
@@ -289,8 +338,10 @@ Case OP_CODE IS
     if (A(31) = '0' and B(31) = '0' and Internal_F(31) = '1') or  -- Positive overflow
        (A(31) = '1' and B(31) = '1' and Internal_F(31) = '0') then -- Negative overflow
         FLAGS(3) <= '1'; -- Set overflow flag
+		EXCEPTION_OUT<= '1';
     else
         FLAGS(3) <= '0'; -- Clear overflow flag
+		EXCEPTION_OUT<= '0';
     end if;
 	
 --PROGECT

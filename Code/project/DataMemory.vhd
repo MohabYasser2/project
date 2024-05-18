@@ -11,7 +11,9 @@ ADDRESS : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 WriteData: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
 FLAGS: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
 DATAOUT : OUT std_logic_vector(31 DOWNTO 0);
-FLAGS_OUT: OUT std_logic_vector(3 DOWNTO 0)
+FLAGS_OUT: OUT std_logic_vector(3 DOWNTO 0);
+EXCEPTION_OUT : OUT STD_LOGIC 
+
 );
 
 END ENTITY;
@@ -26,6 +28,13 @@ BEGIN
 
 PROCESS(CLK, RST) IS
 BEGIN
+
+IF to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0 ))) >4095 OR to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0 ))) <0 THEN
+EXCEPTION_OUT<= '1';
+else
+EXCEPTION_OUT<= '0';
+END IF;
+
 
 if Protect_SIG = '1' then
 RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0))) )(16) <= '1';
