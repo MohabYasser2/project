@@ -33,6 +33,7 @@ END ENTITY;
 
 Architecture Arch of controlunit is
 Signal control :std_logic_vector(16 DOWNTO 0) := (OTHERS => '0');
+SIGNAL SWAPPING: std_logic_vector(15 downto 0);
 Begin
 
 
@@ -41,7 +42,7 @@ process(clk,rst) IS
 BEGIN
 IF rst='1' THEN
 	control<="00000000000000000";
-	Swap_INST<="0000000000000000";
+	SWAPPING<="0000000000000000";
 ELSE
 if Falling_EDGE(clk) THEN
 	IF(opcode="00000") THEN --NoOp
@@ -68,7 +69,7 @@ if Falling_EDGE(clk) THEN
 	--fakes el swap control signal just use stall and inject either NOP OR swapped
 
 	control<="01110100000000000";
-	Swap_INST<="0000000000000000";
+	SWAPPING<="0000000000000000";
 	END IF;
 	IF(opcode="00111") THEN --MOV
 
@@ -89,11 +90,12 @@ IF(opcode="00011") THEN --INC
 END IF;
 IF opcode="01000" AND PERV_STALL = '0' THEN --SWAP,1
     control<="01010110000000000";
-Swap_INST<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) &OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
+SWAPPING<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) & OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
+
 END IF;
-IF opcode="01000" AND PERV_STALL = '0' THEN --SWAP,2
+IF opcode="01000" AND PERV_STALL = '1' THEN --SWAP,2
     control<="01010000000000000";
-Swap_INST<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) &OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
+SWAPPING<=OGInstruction(15 downto 11) & OGInstruction(4 downto 2) &OGInstruction(7 downto 5)&OGInstruction(10 downto 8)&OGInstruction(1 downto 0);
 END IF;
 IF(opcode="01001") THEN --ADD
     control<="01010000000000000";
@@ -121,11 +123,11 @@ IF(opcode="10010") THEN --POP
 END IF;
 IF(opcode="10100") THEN --LDD
     control<="00110100000000000";
-Swap_INST<="0000000000000000";
+SWAPPING<="0000000000000000";
 END IF;
 IF(opcode="10101") THEN --STD 
     control<="00101100000000000";
-Swap_INST<="0000000000000000";
+SWAPPING<="0000000000000000";
 END IF;
 IF(opcode="10110") THEN --PROTECT
     control<="00000000000001000";
@@ -179,5 +181,5 @@ Protect<=control(3);
 Free<=control(2);
 call<=control(1);
 Ret<=control(0);
-
+SWAP_INST<=SWAPPING;
 END ARCHITECTURE;

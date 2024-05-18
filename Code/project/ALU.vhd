@@ -100,13 +100,13 @@ Case OP_CODE IS
 	--XXX WHEN  "00101",
 --IN
 	WHEN  "00110" =>
-	Internal_F := A & A(31);
+	Internal_F := A(31) & A;
 --MOV
 	WHEN  "00111" =>
-	Internal_F := A & A(31);
+	Internal_F := A(31) & A;
 --SWAP
 	WHEN  "01000" =>
-	Internal_F := A & A(31);
+	Internal_F := A(31) & A  ;
 --ADD
 	 WHEN  "01001" =>
 	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));
@@ -251,7 +251,7 @@ Case OP_CODE IS
 	--XXX WHEN  "10010",
 --LDM
 	WHEN  "10011" =>
-	Internal_F := B & B(31);
+	Internal_F := B(31) & B ;
 --LDD
 	WHEN  "10100" =>
 	Internal_F := STD_LOGIC_VECTOR((signed(A) & A(31)) + (signed(B) & B(31)));

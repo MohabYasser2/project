@@ -9,6 +9,7 @@ CLK,RST,PERV_STALL:IN std_logic;
 opcode: IN std_logic_vector(4 DOWNTO 0);
 ReadReg1: IN std_logic_vector(2 DOWNTO 0);
 ReadReg2: IN std_logic_vector(2 DOWNTO 0);
+DST: IN std_logic_vector(2 DOWNTO 0);
 RegWRPipeline: IN std_logic;
 WriteReg:Std_logic_vector(31 DOWNTO 0);
 WriteAdd:std_logic_vector(2 DOWNTO 0);
@@ -79,7 +80,7 @@ SIGNAL TEMPOG:std_logic_vector(15 DOWNTO 0) := (others => '0');
 
 Begin
 
-TEMPOG<=OPCODE &ReadReg1&ReadReg2&WriteAdd&"00";
+TEMPOG<= OPCODE & ReadReg1&ReadReg2 & DST & "00";
 
 u0:Controlunit PORT MAP(CLK,RST,PERV_STALL,OPCODE,TEMPOG,ReadReg1,ReadReg2,MemtoReg, ALUSrc,RegWr,MemWrite,Stall,Swap,Branch0,BranchU,Push,Pop,Insig,Outsig,Protect,Free,callSig,retSig,Swaped_INST,RTI_SIG);
 u1:REGISTERFILE32 PORT MAP(CLK,RST,RegWRPipeline,WriteReg,ReadReg1,ReadReg2,WriteAdd,TEMP,ReadData2);
