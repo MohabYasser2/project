@@ -37,7 +37,7 @@ RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0))) + 1 )(16) <= '0';
 end if;   
 
 
-Protect_Bit <= RAM(to_integer(unsigned(ADDRESS(15 DOWNTO 0))))(16);
+Protect_Bit <= RAM(to_integer("0000" &unsigned(ADDRESS(11 DOWNTO 0))))(16);
 
 IF INTERRUPT_SIG = '1' THEN
 RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0))) ) <= '0' & WriteData(31 DOWNTO 16);
@@ -65,7 +65,7 @@ ELSIF falling_edge(CLK) THEN
     TEMP_DATAOUT <= "00000000000000000000000000000000";
 
     else
-    
+
     TEMP_DATAOUT <=RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0 ))))(15 downto 0) & RAM(to_integer("0000" & unsigned(ADDRESS(11 DOWNTO 0) )) + 1)(15 downto 0) ;
     END IF;
     END IF;
