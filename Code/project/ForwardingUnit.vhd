@@ -14,41 +14,51 @@ ENTITY ForwardingUnit IS
 END ForwardingUnit;
 
 ARCHITECTURE Forwarding OF ForwardingUnit IS
+SIGNAL STORED_DST : STD_LOGIC_VECTOR (2 DOWNTO 0) := (OTHERS => '0');
+SIGNAL STORED_DST1 : STD_LOGIC_VECTOR (2 DOWNTO 0) := (OTHERS => '0');
+SIGNAL STORED_DATA : STD_LOGIC_VECTOR (31 DOWNTO 0) := (OTHERS => '0');
+SIGNAL STORED_DATA1 : STD_LOGIC_VECTOR (31 DOWNTO 0) := (OTHERS => '0');
 
 begin
     PROCESS (clk)
     VARIABLE S1,S2 : STD_LOGIC := '0';
     variable ForwardedData : STD_LOGIC_VECTOR (31 DOWNTO 0) := (OTHERS => '0');
+    
     BEGIN
-        
+       
+        --if rising_edge(clk) then
             -- Default selectors to '0
             S1 := '0';
             S2 := '0';
             ForwardedData := (others => '0');
             -- Forwarding for Src1
-            IF Src1 = MemDst AND MemtoRegM = '0' AND SWAPPING2 = '0' AND REGWRITE1 ='1'THEN
-                ForwardedData := MemResult;
+            IF Src1 = STORED_DST1 AND MemtoRegM = '0' AND SWAPPING2 = '0' AND REGWRITE1 ='1'THEN
+                ForwardedData := STORED_DATA1;
                 S1 := '1';
             END if;
-            IF Src1 = ExDst AND (MemtoRegE = '1' OR IN_SIG = '1') AND SWAPPING1 = '0' AND REGWRITE2 ='1'THEN
-                ForwardedData := ExResultMe;
+            IF Src1 = STORED_DST AND (MemtoRegE = '1' OR IN_SIG = '1') AND SWAPPING1 = '0' AND REGWRITE2 ='1'THEN
+                ForwardedData := STORED_DATA;
                 S1 := '1';
             END IF; 
-            if Src2 = MemDst AND MemtoRegM = '0'AND SWAPPING2 = '0'AND REGWRITE1 ='1' THEN
-                ForwardedData := MemResult;
+            if Src2 = STORED_DST1 AND MemtoRegM = '0'AND SWAPPING2 = '0'AND REGWRITE1 ='1' THEN
+                ForwardedData := STORED_DATA1;
                 S2 := '1';
                 END if;
-            IF Src2 = ExDst AND(MemtoRegE = '1' OR IN_SIG = '1') AND SWAPPING1 = '0'AND REGWRITE2 ='1'THEN
-                ForwardedData := ExResultMe;
+            IF Src2 = STORED_DST AND(MemtoRegE = '1' OR IN_SIG = '1') AND SWAPPING1 = '0'AND REGWRITE2 ='1'THEN
+                ForwardedData := STORED_DATA;
                 S2 := '1';
          
             END IF;
             
             Selector1 <= S1;
             Selector2 <= S2;
+            STORED_DST <= ExDst;
+            STORED_DST1 <= MemDst;
+            
             ForwardedData1 <= ForwardedData;
 
-      
+  --END IF;
     END PROCESS;
-    
+        STORED_DATA <= ExResultMe;
+            STORED_DATA1 <= MemResult;
 END Forwarding;

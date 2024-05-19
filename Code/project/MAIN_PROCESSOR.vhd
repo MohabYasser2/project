@@ -81,6 +81,7 @@ DST: IN std_logic_vector(2 DOWNTO 0);
 RegWRPipeline: IN std_logic;
 WriteReg:Std_logic_vector(31 DOWNTO 0);
 WriteAdd:std_logic_vector(2 DOWNTO 0);
+
 ReadData1: OUT std_logic_vector(31 DOWNTO 0);
 ReadData2: OUT std_logic_vector(31 DOWNTO 0);
 
@@ -91,9 +92,8 @@ Push,Pop,Insig: OUT std_logic;
 Protect,Free: OUT std_logic;
 callSig,retSig,RTI_SIG: OUT STD_LOGIC;
 Swaped_INST :OUT std_logic_vector(15 downto 0);
-OUT_PORT:OUT std_logic_vector(31 DOWNTO 0);
-ReadReg1out,ReadReg2out:OUT std_logic_vector(2 downto 0)--hayrooho 3ala forwarding
-
+ReadReg1out,ReadReg2out:OUT std_logic_vector(2 downto 0);
+OUT_SIG: OUT STD_LOGIC
 
 );
 END COMPONENT;
@@ -109,7 +109,8 @@ callSig: IN STD_LOGIC;
 RET_SIG: IN STD_LOGIC;
 RTI_SIG: IN STD_LOGIC;
 INTERRUPT_SIG: IN STD_LOGIC;
-		SWAPPING_SIG: IN STD_LOGIC;
+SWAPPING_SIG: IN STD_LOGIC;
+
 
 MemToReg_OUT,RegWrite_OUT,MemWrite_OUT,Branch_Sig_OUT,Branch_Z_Sig_OUT,PUSH_OUT,POP_OUT,In_SIG_OUT,Protect_OUT,Free_OUT,ALU_SRC_OUT: OUT STD_LOGIC;
 PC_OUT,READ_DATA1_OUT,READ_DATA2_OUT,IMM_VALUE_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
@@ -124,13 +125,9 @@ ReadReg1in,ReadReg2in:IN std_logic_vector(2 downto 0);
 ReadReg1out,ReadReg2out:OUT std_logic_vector(2 downto 0);
 lastpredin:in STD_LOGIC;
 lastpredout:out STD_LOGIC;
-SWAPPING_SIG_OUT: OUT STD_LOGIC
-
-
-
-
-
-
+SWAPPING_SIG_OUT: OUT STD_LOGIC;
+OUT_SIG: IN STD_LOGIC;
+OUT_PORT: OUT STD_LOGIC_VECTOR (31 downto 0)
 
 
 );
@@ -207,9 +204,10 @@ PORT(	CLK, RST: IN STD_LOGIC;
 		RET_SIG_out: OUT STD_LOGIC;
 		RTI_SIG_out: OUT STD_LOGIC;
 		INTERRUPT_SIG_out: OUT STD_LOGIC;
-		SWAPPING_OUT: OUT STD_LOGIC
+		SWAPPING_OUT: OUT STD_LOGIC;
 
-
+		OUT_PORT_IN: IN STD_LOGIC_VECTOR (31 downto 0);
+		OUT_PORT: OUT STD_LOGIC_VECTOR (31 downto 0)
 
 
 );
@@ -240,8 +238,8 @@ BRANCH_SIG : OUT std_logic;
 BRANCH_Z_SIG : OUT std_logic;
 FLUSH_SIG: OUT STD_LOGIC;
 Flags_out: OUT std_logic_vector(3 DOWNTO 0);
-EXCEPTION_O : OUT STD_LOGIC
 
+EXCEPTION_O : OUT STD_LOGIC
 );
 
 END COMPONENT;
@@ -255,8 +253,9 @@ SWAPPING: IN STD_LOGIC;
 MemToReg_OUT,RegWrite_OUT,In_SIG_OUT: OUT STD_LOGIC;
 MEM_OUTPUT_OUT,ALU_OUTPUT_OUT,IN_PORT_OUT: OUT STD_LOGIC_VECTOR(31 DOWNTO 0); 
 Write_Address_OUT: OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-SWAPPING_OUT: OUT STD_LOGIC
-
+SWAPPING_OUT: OUT STD_LOGIC;
+OUT_PORT_IN: IN STD_LOGIC_VECTOR (31 downto 0);
+OUT_PORT: OUT STD_LOGIC_VECTOR (31 downto 0)
 
 
 
@@ -275,14 +274,14 @@ O : OUT STD_LOGIC_VECTOR (N-1 DOWNTO 0 ));
 END component;
 
 component ForwardingUnit IS
-PORT (
+    PORT (
 	clk,SWAPPING1,SWAPPING2,REGWRITE1,REGWRITE2,IN_SIG : IN STD_LOGIC;
-	Src1, Src2, ExDst, MemDst : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
-	MemtoRegE, MemtoRegM : IN STD_LOGIC;
-	ExResultMe, MemResult : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
-	ForwardedData1 : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
-	Selector1, Selector2 : OUT STD_LOGIC
-);
+        Src1, Src2, ExDst, MemDst : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+		MemtoRegE, MemtoRegM : IN STD_LOGIC; 
+        ExResultMe, MemResult : IN STD_LOGIC_VECTOR (31 DOWNTO 0);
+        ForwardedData1 : OUT STD_LOGIC_VECTOR (31 DOWNTO 0);
+        Selector1, Selector2 : OUT STD_LOGIC
+    );
 
 	END component;
 
@@ -381,7 +380,8 @@ signal lastpredBranchunit: std_logic := '0';
 signal FlushWrongpred: std_logic := '0'; 
 SIGNAL EX1 : std_logic := '0';
 SIGNAL EX2 : std_logic := '0';
-SIGNAL EX3 : std_logic := '0';
+SIGNAL EX3,OUT_SIG : std_logic := '0';
+SIGNAL OUT_PORT_D_E,OUT_PORT_E_M,OUT_PORT_M_WB: std_logic_vector(31 DOWNTO 0):= (others => '0');
 
 BEGIN
 
@@ -390,12 +390,12 @@ BranchResult<=Branch_Z_Sig_OUT_D_E OR Branch_Sig_OUT_D_E;
 FLAGS_MAIN <= FLAGS_OUT_E_M;
 u0: FETCH PORT MAP(CLK,RST,INTERRUPT_SIG,RST,CALL_SIG_D,RET_SIG_M,RTI_SIG_M,BRANCH_SIG_M, BRANCH_Z_SIG_M,STALL,CALL_INSTRUCTION,MEM_OUTPUT,ALU_OUTPUTOUT_E_M,PC_SAVED,FETECHED_INSTRUCTION,Swaped_INST,EXTENDED_IMM,EX3,PC_OUT_D_E,lastpredBranchunit,wrongpred,lastpredout);
 u1: F_D PORT MAP(CLK, RESET_ALL, STALL, FETECHED_INSTRUCTION, PC_SAVED, IN_PORT, INTERRUPT_SIG, PREV_STALL_OUT, PC_OUT_F_D, OP_CODE, SRC1, SRC2, WRITE_ADDRESS_OUT, IN_PORT_OUT_F_D, INTERRUPT_SIG_OUT_F_D,lastpredout,lastpred_F_D);
-u2: DecodeUnit PORT MAP(CLK, RST,PREV_STALL_OUT, OP_CODE, SRC1, SRC2,WRITE_ADDRESS_OUT, RegWrite_OUT_M_WB, Out2, Write_Address_OUT_M_WB, ReadData1, ReadData2, MemtoReg, ALU_Src, RegWrite, MemWrite, Stall, Swap, Branch_SIG_OUT, BRANCH_Z_SIG_OUT, Push, Pop, In_sig, Protect, Free, callSig_out, RET_SIG_out,RTI_SIG_OUT, Swaped_INST, OUT_PORT,ReadReg1F,ReadReg2F);
-u3: D_E PORT MAP(CLK, RESET_ALL, MemToReg, RegWrite, MemWrite, Branch_SIG_OUT, BRANCH_Z_SIG_OUT, PUSH, POP, In_SIG, Protect, Free, ALU_SRC, PC_OUT_F_D, ReadData1, ReadData2, EXTENDED_IMM, IN_PORT_OUT_F_D, WRITE_ADDRESS_OUT, OP_CODE, callSig_out, RET_SIG_out, RTI_SIG_OUT, INTERRUPT_SIG_out_F_D,Swap,MemToReg_OUT_D_E,RegWrite_OUT_D_E,MemWrite_OUT_D_E,Branch_Sig_OUT_D_E,Branch_Z_Sig_OUT_D_E,PUSH_OUT_D_E,POP_OUT_D_E,In_SIG_OUT_D_E,Protect_OUT_D_E,Free_OUT_D_E,ALU_SRC_OUT_D_E, PC_OUT_D_E, ReadData1_OUT_D_E, ReadData2_OUT_D_E, IMM_VALUE_OUT_D_E, IN_PORT_OUT_D_E, WRITE_ADDRESS_OUT_D_E, OP_CODE_D_E, callSig_out_D_E, RET_SIG_out_D_E, RTI_SIG_out_D_E, INTERRUPT_SIG_out_D_E,ReadReg1F,ReadReg2F,readreg1_D_E,readreg2_D_E,lastpred_F_D,lastpred_D_E,SWAPPING_OUT_D_E);
+u2: DecodeUnit PORT MAP(CLK, RST,PREV_STALL_OUT, OP_CODE, SRC1, SRC2,WRITE_ADDRESS_OUT, RegWrite_OUT_M_WB, Out2, Write_Address_OUT_M_WB, ReadData1, ReadData2, MemtoReg, ALU_Src, RegWrite, MemWrite, Stall, Swap, Branch_SIG_OUT, BRANCH_Z_SIG_OUT, Push, Pop, In_sig, Protect, Free, callSig_out, RET_SIG_out,RTI_SIG_OUT, Swaped_INST,ReadReg1F,ReadReg2F,OUT_SIG);
+u3: D_E PORT MAP(CLK, RESET_ALL, MemToReg, RegWrite, MemWrite, Branch_SIG_OUT, BRANCH_Z_SIG_OUT, PUSH, POP, In_SIG, Protect, Free, ALU_SRC, PC_OUT_F_D, ReadData1, ReadData2, EXTENDED_IMM, IN_PORT_OUT_F_D, WRITE_ADDRESS_OUT, OP_CODE, callSig_out, RET_SIG_out, RTI_SIG_OUT, INTERRUPT_SIG_out_F_D,Swap,MemToReg_OUT_D_E,RegWrite_OUT_D_E,MemWrite_OUT_D_E,Branch_Sig_OUT_D_E,Branch_Z_Sig_OUT_D_E,PUSH_OUT_D_E,POP_OUT_D_E,In_SIG_OUT_D_E,Protect_OUT_D_E,Free_OUT_D_E,ALU_SRC_OUT_D_E, PC_OUT_D_E, ReadData1_OUT_D_E, ReadData2_OUT_D_E, IMM_VALUE_OUT_D_E, IN_PORT_OUT_D_E, WRITE_ADDRESS_OUT_D_E, OP_CODE_D_E, callSig_out_D_E, RET_SIG_out_D_E, RTI_SIG_out_D_E, INTERRUPT_SIG_out_D_E,ReadReg1F,ReadReg2F,readreg1_D_E,readreg2_D_E,lastpred_F_D,lastpred_D_E,SWAPPING_OUT_D_E,OUT_SIG,OUT_PORT_D_E);
 u4: EXECUTE PORT MAP(CLK, RST, ALU_SRC_OUT_D_E, OP_CODE_D_E, ReadData1_OUT_D_E, ReadData2_OUT_D_E, IMM_VALUE_OUT_D_E, RTI_SIG_out_E_M, RTI_FLAGS_M,IN_SIG_OUT_D_E,IN_PORT_OUT_D_E, ALU_OUTPUT, FLAGS,PREV_FLAGS,FORWARDED,FRWDSELEC1,FRWDSELEC2,EX2);
-u5: E_M PORT MAP(CLK,RESET_ALL, ALU_OUTPUT, PC_OUT_D_E, FLAGS, WRITE_ADDRESS_OUT_D_E, IN_PORT_OUT_D_E, MemToReg_Out_D_E, RegWrite_Out_D_E, MemWrite_Out_D_E, Branch_Sig_Out_D_E, Branch_Z_Sig_Out_D_E, PUSH_OUT_D_E, POP_OUT_D_E, In_SIG_OUT_D_E, Protect_OUT_D_E, Free_OUT_D_E, Write_data_out_D_E, call_Sig_out_D_E, RET_SIG_out_D_E, RTI_SIG_out_D_E, INTERRUPT_SIG_out_D_E,PREV_FLAGS,SWAPPING_OUT_D_E, ALU_outputOut_E_M, PC_OUT_E_M,FLAGS_OUT_E_M ,PREV_FLAGS_E_M, Write_Address_Out_E_M, IN_PORT_OUT_E_M, MemToReg_Out_E_M, RegWrite_Out_E_M, MemWrite_Out_E_M, Branch_Sig_Out_E_M, Branch_Z_Sig_Out_E_M, PUSH_Out_E_M, POP_Out_E_M, In_SIG_Out_E_M, Protect_Out_E_M, Free_Out_E_M, Write_data_out_E_M, callSig_out_E_M, RET_SIG_out_E_M, RTI_SIG_out_E_M, INTERRUPT_SIG_out_E_M,SWAPPING_OUT_E_M);
+u5: E_M PORT MAP(CLK,RESET_ALL, ALU_OUTPUT, PC_OUT_D_E, FLAGS, WRITE_ADDRESS_OUT_D_E, IN_PORT_OUT_D_E, MemToReg_Out_D_E, RegWrite_Out_D_E, MemWrite_Out_D_E, Branch_Sig_Out_D_E, Branch_Z_Sig_Out_D_E, PUSH_OUT_D_E, POP_OUT_D_E, In_SIG_OUT_D_E, Protect_OUT_D_E, Free_OUT_D_E, Write_data_out_D_E, call_Sig_out_D_E, RET_SIG_out_D_E, RTI_SIG_out_D_E, INTERRUPT_SIG_out_D_E,PREV_FLAGS,SWAPPING_OUT_D_E, ALU_outputOut_E_M, PC_OUT_E_M,FLAGS_OUT_E_M ,PREV_FLAGS_E_M, Write_Address_Out_E_M, IN_PORT_OUT_E_M, MemToReg_Out_E_M, RegWrite_Out_E_M, MemWrite_Out_E_M, Branch_Sig_Out_E_M, Branch_Z_Sig_Out_E_M, PUSH_Out_E_M, POP_Out_E_M, In_SIG_Out_E_M, Protect_Out_E_M, Free_Out_E_M, Write_data_out_E_M, callSig_out_E_M, RET_SIG_out_E_M, RTI_SIG_out_E_M, INTERRUPT_SIG_out_E_M,SWAPPING_OUT_E_M,OUT_PORT_D_E,OUT_PORT_E_M);
 u6: MEMORY PORT MAP(CLK, RST, PUSH_OUT_E_M, POP_OUT_E_M, MEMWRITE_OUT_E_M, INTERRUPT_SIG_OUT_E_M,MEMTOREG_OUT_E_M, ALU_outputOut_E_M, Write_data_out_E_M, MEM_OUTPUT, FLAGS_OUT_E_M, Branch_Sig_out_E_M, Branch_Z_Sig_out_E_M, Protect_OUT_E_M, Free_OUT_E_M, PC_OUT_E_M, callSig_out_E_M, RET_SIG_out_E_M, RTI_SIG_out_E_M, RET_SIG_OUT_M, RTI_SIG_OUT_M, BRANCH_SIG_M, BRANCH_Z_SIG_M, FLUSH_SIG_M, RTI_FLAGS_M,EX1);
-u7: M_WB PORT MAP(CLK, RST, MemToReg_Out_E_M, RegWrite_Out_E_M, In_SIG_OUT_E_M, MEM_OUTPUT, ALU_outputOut_E_M, IN_PORT_OUT_E_M, Write_Address_Out_E_M,SWAPPING_OUT_M_WB, MemToReg_OUT_M_WB, RegWrite_OUT_M_WB, In_SIG_OUT_M_WB, MEM_OUTPUT_M_WB, ALU_OUTPUT_M_WB, IN_PORT_OUT_M_WB, Write_Address_OUT_M_WB,SWAPPING_OUT_M_WB);
+u7: M_WB PORT MAP(CLK, RST, MemToReg_Out_E_M, RegWrite_Out_E_M, In_SIG_OUT_E_M, MEM_OUTPUT, ALU_outputOut_E_M, IN_PORT_OUT_E_M, Write_Address_Out_E_M,SWAPPING_OUT_M_WB, MemToReg_OUT_M_WB, RegWrite_OUT_M_WB, In_SIG_OUT_M_WB, MEM_OUTPUT_M_WB, ALU_OUTPUT_M_WB, IN_PORT_OUT_M_WB, Write_Address_OUT_M_WB,SWAPPING_OUT_M_WB,OUT_PORT_E_M,OUT_PORT);
 u8: Mux2x1 generic map(32) PORT MAP( MEM_OUTPUT_M_WB,ALU_OUTPUT_M_WB, MEMTOREG_OUT_M_WB, Out1);
 u9: Mux2x1 generic map(32) PORT MAP(Out1, IN_PORT_OUT_M_WB,IN_SIG_OUT_M_WB, Out2);
 u10: ForwardingUnit PORT MAP(CLK,SWAPPING_OUT_D_E,SWAPPING_OUT_E_M,REGWRITE_OUT_E_M,REGWRITE_OUT_D_E,IN_SIG_OUT_D_E,readreg1_D_E,readreg2_D_E,WRITE_ADDRESS_OUT_D_E,Write_Address_Out_E_M,MemToReg_Out_D_E ,MemToReg_OUT_E_M,ALU_OUTPUT,MEM_OUTPUT,FORWARDED,FRWDSELEC1,FRWDSELEC2);

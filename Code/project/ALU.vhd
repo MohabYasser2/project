@@ -35,7 +35,8 @@ begin
 IF RST = '1' THEN
 	FLAGS <= (OTHERS => '0');
 	External_F <= (OTHERS => '0');
-ELSIF FALLING_EDGE(CLK) THEN
+
+	ELSIF FALLING_EDGE(CLK) THEN
 Case OP_CODE IS
 
 
